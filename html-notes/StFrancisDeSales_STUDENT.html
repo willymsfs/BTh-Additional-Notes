@@ -1,0 +1,415 @@
+<title>Saint Francis De Sales — STUDENT EDITION</title>
+<style>
+  :root {
+    --ink: #ede3cf; --ink-soft: #cdbfa4; --paper: #211c16; --paper-raised: #2a241c;
+    --line: rgba(237,227,207,0.16); --wine: #c17a4d; --wine-soft: #c17a4d1c;
+    --gold: #d6ad5c; --gold-soft: #d6ad5c1a; --muted: #a3947a;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ink: #2a2318; --ink-soft: #4d4330; --paper: #f4ecdb; --paper-raised: #ffffff;
+      --line: rgba(42,35,24,0.15); --wine: #9c4f27; --wine-soft: #9c4f2714;
+      --gold: #8a6414; --gold-soft: #8a641414; --muted: #7a6c52; color-scheme: light;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #ede3cf; --ink-soft: #cdbfa4; --paper: #211c16; --paper-raised: #2a241c;
+    --line: rgba(237,227,207,0.16); --wine: #c17a4d; --wine-soft: #c17a4d1c;
+    --gold: #d6ad5c; --gold-soft: #d6ad5c1a; --muted: #a3947a;
+  }
+  :root[data-theme="light"] {
+    --ink: #2a2318; --ink-soft: #4d4330; --paper: #f4ecdb; --paper-raised: #ffffff;
+    --line: rgba(42,35,24,0.15); --wine: #9c4f27; --wine-soft: #9c4f2714;
+    --gold: #8a6414; --gold-soft: #8a641414; --muted: #7a6c52;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 20px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--wine-soft); }
+  h1, h2, h3, h4, .display {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "URW Palladio", serif;
+    text-wrap: balance; font-weight: 400; color: var(--gold); margin: 0;
+  }
+  p { margin: 0 0 1.1em; max-width: 42em; }
+  strong { color: var(--ink); font-weight: 700; }
+  em { color: var(--wine); font-style: italic; }
+  a { color: var(--wine); }
+
+  header.hero { padding: 60px 24px 44px; text-align: center; border-bottom: 1px solid var(--line); }
+  header.hero .eyebrow { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--wine); margin-bottom: 12px; }
+  header.hero h1 { font-size: clamp(30px, 4.6vw, 44px); max-width: 20ch; margin: 0 auto 8px; font-style: italic; }
+  header.hero .sub { max-width: 46em; margin: 0 auto 16px; color: var(--ink-soft); font-size: 18px; }
+  header.hero .inst { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+  header.hero .edition {
+    display: inline-block; margin: 12px 0 10px; padding: 4px 14px; border: 1px solid var(--gold);
+    border-radius: 20px; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+  }
+  header.hero .meta { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+  header.hero .leitmotif-line { font-size: 14.5px; color: var(--wine); font-style: italic; margin-top: 10px; }
+
+  nav.chapters {
+    position: sticky; top: 0; z-index: 10; display: flex; gap: 2px; overflow-x: auto;
+    background: var(--paper); border-bottom: 1px solid var(--line); padding: 0 12px;
+  }
+  nav.chapters a {
+    flex: none; padding: 12px 13px; font-size: 13px; text-decoration: none; color: var(--muted);
+    white-space: nowrap; border-bottom: 2px solid transparent;
+  }
+  nav.chapters a:hover { color: var(--wine); border-color: var(--wine-soft); }
+
+  main { max-width: 780px; margin: 0 auto; padding: 0 24px 40px; }
+
+  section.chapter { padding: 52px 0 34px; border-bottom: 1px solid var(--line); scroll-margin-top: 50px; }
+  section.chapter:last-of-type { border-bottom: none; }
+  section.chapter h2 { font-size: clamp(22px, 3vw, 28px); margin-bottom: 18px; font-style: italic; }
+
+  h3.sec { font-size: 20px; color: var(--gold); margin: 28px 0 10px; }
+
+  ul.plain, ol { padding-left: 1.3em; margin: 0 0 1.1em; max-width: 42em; }
+  ul.plain li, ol li { margin-bottom: 9px; }
+
+  .review { margin-top: 24px; background: var(--gold-soft); border: 1px solid var(--line); border-radius: 3px; padding: 18px 22px; }
+  .review h4 { margin: 0 0 10px; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+  .review ol { margin: 0; padding-left: 1.2em; font-size: 16.5px; color: var(--ink-soft); }
+
+  .cue {
+    background: var(--paper-raised); border: 1px solid var(--line); border-left: 3px solid var(--gold);
+    border-radius: 3px; padding: 14px 18px; margin: 18px 0;
+  }
+  .cue p { margin: 0; font-size: 16.5px; color: var(--ink-soft); }
+  .cue strong { color: var(--gold); }
+
+  footer.page { max-width: 780px; margin: 0 auto; padding: 34px 24px 60px; font-size: 13.5px; color: var(--muted); }
+</style>
+
+<header class="hero">
+  <p class="eyebrow">BTh &middot; Morning Star Regional Seminary</p>
+  <h1>Saint Francis De Sales</h1>
+  <p class="sub">Life, Works and Spirituality</p>
+  <div class="inst">MORNING STAR REGIONAL SEMINARY, BARRACKPORE</div>
+  <div class="edition">STUDENT EDITION</div>
+  <p class="meta">Bachelor of Theology  |  Christian Spirituality</p>
+  <p class="leitmotif-line">Leitmotif of the Course: The Visitation (Lk 1:39-56)</p>
+</header>
+
+<nav class="chapters">
+  <a href="#unit-one-you-are-a-disciple-of-the-gentl">Unit One: You are a Disciple of the Gentle Doctor</a>
+  <a href="#unit-two-the-leitmotif-the-visitation-re">Unit Two: The Leitmotif, the Visitation Read Seven Ways</a>
+  <a href="#unit-three-the-world-that-made-him">Unit Three: The World That Made Him</a>
+  <a href="#unit-four-the-life">Unit Four: The Life</a>
+  <a href="#unit-five-the-threshold-question-who-may">Unit Five: The Threshold Question, Who May Be Holy?</a>
+  <a href="#unit-six-what-is-devotion">Unit Six: What is Devotion?</a>
+  <a href="#unit-seven-the-four-works">Unit Seven: The Four Works</a>
+  <a href="#unit-eight-the-polarities-of-salesian-sp">Unit Eight: The Polarities of Salesian Spirituality</a>
+  <a href="#unit-nine-the-sacramental-floor-and-the-">Unit Nine: The Sacramental Floor and the Daily Exercises</a>
+  <a href="#unit-ten-the-virtues-and-the-spiritual-c">Unit Ten: The Virtues and the Spiritual Combat</a>
+  <a href="#unit-eleven-the-treatise-the-two-wills-a">Unit Eleven: The Treatise, the Two Wills and Holy Indifference</a>
+  <a href="#important-question">Important Question</a>
+  <a href="#unit-twelve-the-indian-horizon">Unit Twelve: The Indian Horizon</a>
+  <a href="#unit-thirteen-legacy-and-the-salesian-fa">Unit Thirteen: Legacy and the Salesian Family</a>
+  <a href="#unit-fourteen-vive-jesus">Unit Fourteen: Vive Jesus</a>
+  <a href="#review-questions">Review Questions</a>
+  <a href="#select-bibliography">Select Bibliography</a>
+</nav>
+
+<main>
+<section class="chapter" id="unit-one-you-are-a-disciple-of-the-gentl">
+<h2>Unit One: You are a Disciple of the Gentle Doctor</h2>
+<p>You are not opening the file of a dead Bishop. You are opening the file of the Patron of Writers, the Doctor of Charity, and the Founder of the Family whose name many of you will carry for life. Before the first date is memorised, one Claim must be made about the Student: the Devout Life described in these Notes is not a Museum Piece to be examined, but a Programme to be lived in Barrackpore, in Bengal, in the Parish and in the Mission Station that awaits you.</p>
+<p>Saint Francis de Sales stands at the exact hinge of Christian Spirituality. Before him, the Devout Life belonged, in the popular Mind, to the Cloister. After him, it belonged to the Kitchen, the Workshop, the Court and the Camp. He did not invent this Doctrine, for the Gospel had always taught it. He did what no one before him had done with equal Clarity: he wrote it down for the Laity, in their Language, and made it practicable.</p>
+<p>Three Virtues are asked of you in this Course: Attention to the Text, Affection for the Saint, and Application to your own Heart. Information leads to Formation; Formation leads to Transformation. A Student who can date the Chablais Mission and cannot bear a Confrere with Patience has failed this Course, whatever the Marks say.</p>
+<p>And one Warning at the threshold. Francis de Sales is the most misread Saint in the Calendar. He is filed under Sweetness, and Sweetness is mistaken for Softness. The Notes that follow will demonstrate the opposite: that the Gentleness of Francis de Sales was an Ascesis achieved by Violence against his own Temper, that it stood up to a Duke and refused two Bishoprics, and that it rested on a Sacramental Discipline of iron regularity.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> Bengal knows the Difference between Softness and Gentleness. The Gentleness that is admired in our Villages is the Gentleness of the Elder who refuses to shout and also refuses to lie. In a Culture where Anger is often mistaken for Strength, and Silence for Weakness, the Salesian Model offers a third Way: the Strong Man who has taken hold of his own Heart with both Hands.</p>
+</section>
+<section class="chapter" id="unit-two-the-leitmotif-the-visitation-re">
+<h2>Unit Two: The Leitmotif, the Visitation Read Seven Ways</h2>
+<p>Every Course needs a Text that returns. For this Course the Text is the Visitation (Lk 1:39-56). The Choice is not ours. It was the Choice of Francis de Sales himself, who named his Order after this Mystery and not after any Title of the Blessed Virgin, precisely so that the Sisters would imitate what Mary did rather than merely honour what Mary was.</p>
+<h3 class="sec">The Seven Readings</h3>
+<p><strong>A. Devotion as Haste.</strong> &quot;Mary arose and went with haste into the hill country&quot; (39). Devotion is Charity in a Hurry. The Salesian Definition of Devotion is precisely this Promptitude of Love, and the Verb of the Visitation is the Verb of the Definition.</p>
+<p><strong>B. Devotion as Greeting.</strong> &quot;She entered the house of Zechariah and greeted Elizabeth&quot; (40). Salesian Spirituality is a Spirituality of Encounter, of the Word spoken to a Person and not shouted at a Crowd. The Chablais Mission is the Visitation continued: a Man carrying the Word into Houses that would not open their Doors.</p>
+<p><strong>C. Devotion as the Leaping of the Heart.</strong> &quot;The babe leaped in my womb for joy&quot; (44). Heart speaks to Heart. This is the whole Homiletic Doctrine of Francis de Sales in one Verse, and the Origin of the Salesian Symbol, which is not a Book or a Sword but a Heart.</p>
+<p><strong>D. Devotion as Justice.</strong> &quot;He has put down the mighty from their thrones, and exalted those of low degree&quot; (52). The Magnificat is sung inside the Visitation. Any Reading of Salesian Sweetness that cannot accommodate this Verse is a false Reading.</p>
+<p><strong>E. Devotion as Humility.</strong> &quot;He has regarded the low estate of his handmaiden&quot; (48). The Salesian Summit is the Love of our own Abjection, and the Magnificat is where the Church learns to sing it.</p>
+<p><strong>F. Devotion as Service in the Ordinary.</strong> &quot;Mary remained with her about three months&quot; (56). Not a Vision, not an Ecstasy: three Months of Domestic Work in the Hill Country. Here is the Ecstasy of Act and Life, of which the Treatise will speak in Book Seven.</p>
+<p><strong>G. Devotion as Return.</strong> &quot;And returned to her home&quot; (56). The Devout Life does not require Emigration from the Household. Mary goes back. So does Philothea, and so will you, to the Diocese and the Family and the Duties that were there before the Retreat began.</p>
+<p><strong>EXAMPLE: </strong>Ask any Congregation to name the Mystery of Gentleness and they will name Bethlehem. Francis de Sales names the Visitation instead. Bethlehem shows us God arriving. The Visitation shows us the Graced Person going out. That single Preference explains why the Salesian Family is Missionary and not merely Contemplative.</p>
+<p>This Text will return twice: once as the Hinge Question before the Indian Unit, and once at the Close. Watch for it.</p>
+</section>
+<section class="chapter" id="unit-three-the-world-that-made-him">
+<h2>Unit Three: The World That Made Him</h2>
+<p>Doctrine is never born in a vacuum. The Gentleness of Francis de Sales is a Deliberate Choice made inside a Century of Religious Violence, and it becomes intelligible only against that Background.</p>
+<h3 class="sec">A. Savoy, the Frontier</h3>
+<p>The Duchy of Savoy was a mountainous Territory wedged between France, the Swiss Cantons and Italy, governed by the Duke of Savoy from Turin, and permanently squeezed between French Ambition and Swiss Expansion. Francis de Sales was therefore a Borderland Man. For him, Catholic Europe and Protestant Europe did not meet as an Abstraction. They met across a Lake.</p>
+<h3 class="sec">B. Geneva 1534, the Lost See</h3>
+<p>In 1534 the City of Geneva revolted against the Duke of Savoy, declared Independence and embraced the Reformation. Geneva became the Fortress of Calvinism and gave Refuge to John Calvin when he was exiled from France. From Geneva the Reform spread outward and seized the neighbouring Territory of the Chablais. The Catholic Bishop of Geneva was expelled and moved his Residence to Annecy, some twenty-two miles to the South, inside Savoy.</p>
+<p>Hold this Irony, because it governs the whole Life: Francis de Sales is the Bishop of Geneva who never governs Geneva. Throughout his Episcopate he is a Bishop exiled from his own Cathedral City. The Diocese is a Wound.</p>
+<h3 class="sec">C. the Wars of Religion</h3>
+<p>The Student Years in Paris fall inside the French Wars of Religion: the Catholic League against Henry of Navarre, Sieges, Assassinations, and the living Memory of the Massacre of Saint Bartholomew. Civil Disorder was ordinary Weather. When Francis de Sales later writes that more Flies are caught with a Spoonful of Honey than with a hundred Barrels of Vinegar, he writes as a Man who watched Vinegar being poured for thirty Years and counted the Corpses.</p>
+<h3 class="sec">D. Trent, the Working Programme</h3>
+<p>The Council of Trent (1545-1563) reaffirmed Catholic Doctrine on the Sacraments, the Eucharist and Justification, and mandated the Reform of Clergy Formation and Monastic Discipline. Francis de Sales was born four Years after the Council closed. He belongs, therefore, not to the Generation that debated Trent but to the Generation charged with implementing it in a concrete Diocese.</p>
+<p>The Clergy he inherited were marked by Ignorance, relaxed Discipline and no Theological Training. His own Diagnosis of the Loss of the Chablais was blunt, and it is worth memorising for the Examination and for Life: the Calvinist Ministers had exploited the Ignorance of Catholic Priests.</p>
+<p>&quot;Ignorance of priests is more greatly to be feared than sin.&quot;</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> Read the Word Frontier again with Indian Eyes. The Diocese of Asansol, the Mission Stations of the North East, and the Adivasi Belts of Jharkhand and Chotanagpur are Frontier Churches in exactly the Salesian Sense: minority Communities living beside a majority Tradition, under Pressure, and tempted to answer that Pressure with either Silence or Shouting. The Chablais Model, which is Presence plus Clear Teaching plus refusal of Invective, is the third Option, and it is the one that historically worked.</p>
+<p><strong>A NOTE FOR THE CLASSROOM: </strong>Older Devotional Lives present the Chablais Mission as a simple Triumph of Charm. Contemporary Scholarship insists on the Political Frame: the Duke of Savoy had reconquered the Territory, and the Return of the Catholic Faith enjoyed State Support. Both Facts stand together. The Method of Francis de Sales was genuinely persuasive rather than coercive, and it operated inside a Political Settlement that favoured it. Say both Things in Class, and the Student learns Historical Honesty along with Hagiography.</p>
+</section>
+<section class="chapter" id="unit-four-the-life">
+<h2>Unit Four: The Life</h2>
+<p>Read the Life as the first Draft of the Doctrine. Every major Teaching has a biographical Wound or Joy behind it. The Terror of Predestination produces the Primacy of Love over Fear. The choleric Temper conquered produces Gentleness. The Chablais produces Truth spoken in Charity. The Friendship with Jane de Chantal produces the Theology of Spiritual Friendship.</p>
+<h3 class="sec">A. Origins (1567)</h3>
+<p>Born on 21 August 1567 in the Chamber of Saint Francis of Assisi at the Chateau de Sales, in the Parish of Thorens in Savoy. He was the eldest Child of Francois, Seigneur de Nouvelles, and of the Heiress of the Lands of Boisy; on Marriage the Father took the Title of the Estate of the Mother, so the Parents are known as Monsieur and Madame de Boisy.</p>
+<p>The Mother, Francoise de Boisy, dedicated the Child to God before his Birth, and remained the decisive Figure of the early Years. When the Father angrily refused to fund the dangerous Mission to the Chablais, the Mother secretly supplied Money and Linen. Francis de Sales served as the Spiritual Director of his own Mother, and she called him the Guardian Angel of the Family.</p>
+<h3 class="sec">B. Paris and the Crisis (about 1580 to 1588)</h3>
+<p>After early Schooling at La Roche and Annecy he was sent to Paris for Rhetoric, Humanities and Philosophy. The Father preferred the College of Navarre, which was the College of the Nobility. The Son insisted on the College of Clermont, conducted by the Jesuits, where he also read Theology and Greek.</p>
+<p>Between 1586 and 1587 the Student was seized by the Conviction that he was predestined to Damnation. The Anguish was total and it wrecked his Body: he could neither eat nor sleep. The Resolution came in the Church of Saint Etienne des Gres, kneeling before the Statue of the Black Madonna, where he prayed the Memorare. The Torment vanished at once. He then made a Vow of Chastity and promised the daily Rosary.</p>
+<p>Mark the Theological Significance, because it is the Key to everything that follows. He did not solve the Problem of Predestination by out-arguing Calvin. He solved it by an Act of Love and Surrender to a God who is Good. The whole later System, in which God is Love before God is Judge, is the mature Doctrinal Form of what happened in that Chapel to a Boy of nineteen.</p>
+<p><strong>EXAMPLE: </strong>Put the Question to the Class directly. A Seminarian in his second Year arrives at the Door at midnight, convinced that he is beyond Mercy and that his Vocation is a Fraud. Do you hand him the Council of Trent on Justification, or do you hand him the Memorare? Francis de Sales received the second and became a Doctor of the Church. The Order of Operations matters: first the Heart is quieted, then the Mind is instructed.</p>
+<h3 class="sec">C. Padua and the Doctorate (1588 to 1591)</h3>
+<p>At the University of Padua he studied Civil and Roman Law under the celebrated Professor Guy Panciroli, and took the Jesuit Father Possevin as his Spiritual Director. Under the double Pressure of the Temptation to Despair and of severe Austerities he was reduced to a Skeleton and received the Last Sacraments. He recovered after surrendering his Will to God, guided also by Father Scupoli, the Author of The Spiritual Combat, whose Doctrine of Temptation remained with him for Life.</p>
+<p>In September 1591 he received the Doctorate in Jurisprudence. Panciroli personally conferred the Cap and the Ring, declaring that the University had found in this Student the sublimest Qualities of Head and Heart. He returned to Savoy a trained Jurist, and the Training is visible ever afterwards in the ordered Architecture of the Books and in the forensic Clarity of the Controversy.</p>
+<h3 class="sec">D. the Vocational Crisis and Ordination (1591 to 1593)</h3>
+<p>Monsieur de Boisy had arranged two Things for his eldest Son: Marriage with the wealthy Heiress Mademoiselle de Suchet, Daughter of the Seigneur de Vegy, and a Seat as Senator at the Court of Savoy. Francis de Sales refused both. The Deadlock was broken by his Cousin, Canon Louis de Sales, who secured for him the Provostship of the Chapter of Geneva, a Dignity second only to the Bishop. Faced with an Honour rather than a Renunciation, the Father relented with the Words, &quot;Go then and serve God only.&quot;</p>
+<p>He was installed as Provost in May 1593 and ordained Priest on 18 December 1593.</p>
+<h3 class="sec">E. the Chablais Mission (1594 to 1598)</h3>
+<p>In the Autumn of 1594 he volunteered for the Mission to the Chablais, Calvinist for sixty Years. He set out on 9 September with his Cousin Louis and based his Operations at the Fortress of Allinges. He endured Attempts on his Life; on one Night he tied himself to the Branch of a Tree to escape Wolves; he crawled across an icy Plank over the River Drance to say the daily Mass.</p>
+<p>The Calvinists were forbidden by their Ministers to hear him, and the Doors were shut. So he wrote. Hand-copied Tracts were placarded in the Streets and Squares and slipped under the Doors. By 1598 almost the whole Population of some seventy-two thousand had returned to the Catholic Faith. These Tracts were later collected as The Catholic Controversy.</p>
+<h3 class="sec">F. Rome, Paris and the Episcopate (1599 to 1602)</h3>
+<p>In 1599 he travelled to Rome to petition Clement VIII. The Pope examined him theologically in full Consistory, was delighted, and named him Coadjutor Bishop of Geneva. In 1602 he travelled to Paris to negotiate the Religious Status of the Province of Gex with Henry IV. He preached the Lent at Court; the King called him the Phoenix of Prelates and repeatedly offered him a richer French See. The Refusal has become famous.</p>
+<p>&quot;I have married a poor wife, and I cannot desert her for a rich one.&quot;</p>
+<p>Bishop Claude de Granier died in September 1602, and Francis de Sales was consecrated Bishop of Geneva on 8 December 1602 in the Village Church at Thorens, taking up Residence at Annecy.</p>
+<h3 class="sec">G. Chantal and the Visitation (1604 to 1610)</h3>
+<p>Preaching the Lent at Dijon in 1604 he noticed a Widow in deep Mourning listening intently, and recognised her from an earlier Vision. It was Jane Frances de Chantal. He became her Director, and on 10 June 1610 the two founded the Order of the Visitation of Holy Mary.</p>
+<h3 class="sec">H. the Books (1609 and 1616)</h3>
+<p>The Introduction to the Devout Life appeared in 1609. It began as personal Notes and Letters written for Madame de Charmoisy, a Noblewoman balancing Duties at Court with a Desire for Holiness. The Jesuit Father Forrier saw the Notes and pressed for Publication, and Francis de Sales laughed that People wished him to believe he had written a Book without meaning it. The Treatise on the Love of God appeared in 1616. Of its Composition he said that he wrote it as much on his Heart as on the Paper.</p>
+<h3 class="sec">I. Death (1622)</h3>
+<p>Already failing, he accompanied the Court of Savoy to Avignon and then to Lyons to meet the King of France. Offered splendid Mansions, he asked instead for the draughty and smoky Room of the Gardener at the Monastery of the Visitation. After his last Christmas Midnight Mass he suffered Apoplexy. To rouse him from Stupor the Physicians applied red-hot Irons to his Head and to the nape of his Neck, burning to the Bone, and he bore it without a single Complaint, intoning the Te Deum and reciting the Psalms.</p>
+<p>As his Strength failed he smiled and murmured, &quot;Advesperavit, et inclinata est jam dies,&quot; which is the Word of the Disciples at Emmaus, &quot;It is towards evening, and the day is now far spent&quot; (Lk 24:29). His last Word on Earth was &quot;Jesus.&quot; He died on 28 December 1622, the Feast of the Holy Innocents, aged fifty-five.</p>
+<h3 class="sec">J. the Man Himself</h3>
+<p>The Chronology gives the Skeleton. The Portrait gives the Man. He was born with golden Curls which were shorn, despite his Tears, at the Tonsure when he was eleven. As a Youth he was straight, slender and handsome, with kind blue Eyes and a winning Smile. As a Bishop he kept a close-cropped round Beard without a Moustache, and somewhat full Lips that often held the Hint of a sarcastic but good-humoured Smile.</p>
+<p>He was by Nature lively and angry, and he fought a heroic lifelong Battle to master his Passions. The two Passions that cost him most, by his own Admission, were the Love of Creatures and Anger, and he conquered the second, in his own Phrase, by taking hold of his Heart with both Hands. After his Death the Physicians are said to have found the Gall turned into some three hundred small Stones resembling a Rosary, which his Contemporaries read as the physical Record of fifty Years of Self-Restraint.</p>
+<p>He was also witty. When a Huguenot rudely demanded whether the splendid Carriage in which he rode was his own, he replied that he was far too poor to own a Carriage, and that the Carriage and the liveried Servants belonged to the King of France. Of his Brothers he said that Jean-Francois was the Vinegar of the Family for the Sharpness of his Tongue, that Louis was the Salt for his Wisdom, and that he himself was the Oil, for the Love of Gentleness.</p>
+<p><strong>A NOTE FOR THE CLASSROOM: </strong>The Detail of the three hundred Gallstones comes from seventeenth-century Testimony and is repeated in the Devotional Biographies. Modern Medicine would not accept the Causal Link between suppressed Anger and Cholelithiasis. Teach the Detail as Testimony rather than as Physiology. What it reliably reports is the Judgement of those who knew him: that the Sweetness cost him more than anyone could see.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> Note the Refusal of the Richer See. In an Indian Ecclesial Culture where Transfer to a larger Diocese, a City Parish or a foreign Assignment is quietly understood as Promotion, the Sentence about the poor Wife is not Sentiment. It is a Standard. Ask the Class the uncomfortable Question: which of our Institutions would survive if every Priest applied it?</p>
+</section>
+<section class="chapter" id="unit-five-the-threshold-question-who-may">
+<h2>Unit Five: The Threshold Question, Who May Be Holy?</h2>
+<p>Every Course has one Question at the Threshold. For this Course the Question is not What is Holiness but Who may be Holy. Three Answers have been given in the History of Spirituality.</p>
+<h3 class="sec">A. the Monastic Reservation</h3>
+<p>Perfection belongs properly to those who leave the World. The Layman may be saved, but Holiness in the strict Sense requires the Cloister, the Vows and the Habit. This View is nowhere formally defined, and it was everywhere assumed. It survives today in the Sentence, spoken by good People in our Parishes, that Sanctity is for Priests and Sisters.</p>
+<h3 class="sec">B. the Protestant Levelling</h3>
+<p>The Reformers rightly rejected the Two-Tier Model, but in rejecting the higher Tier they also weakened the Ascetical Programme, and Vocation came to mean Occupation without a corresponding Discipline of Prayer and Sacrament.</p>
+<h3 class="sec">C. the Salesian Position</h3>
+<p>Devotion belongs to every State of Life, and to deny this is not merely a Mistake but a Heresy. The Salesian Answer keeps the Universality of the second Position and the Ascetical Seriousness of the first.</p>
+<p>&quot;It is an error, nay rather a heresy, to wish to banish the devout life from the army, from the workshop, from the courts of princes, from the households of married folk.&quot;</p>
+<p>The Church has since made this Position her own. The Second Vatican Council devotes the fifth Chapter of Lumen Gentium to the Universal Call to Holiness, teaching that all the Faithful of Christ, of whatever Rank or Status, are called to the Fullness of the Christian Life and to the Perfection of Charity (LG 40), and that this one Holiness is cultivated in a Multiplicity of Ways by each in his own State and Condition (LG 41). What the Council promulgated in 1964 the Bishop of Geneva had published in 1609.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> The Indian Application is sharp and it cuts two Ways. On the one Side, the Doctrine liberates: the Domestic Worker in Kolkata, the Tea Garden Labourer in Dooars and the Fisherman on the Coast are called to the same Perfection of Charity as the Contemplative. On the other Side, the Formula that each is to be devout according to his own Vocation can be misused, in a Caste Society, to sanctify a Position into which a Person was born and from which Justice would remove him. Francis de Sales denies Devotion to no State. He never teaches that a State of Oppression is the Will of God. Keep the Emancipatory Sense and refuse the Fatalistic one.</p>
+</section>
+<section class="chapter" id="unit-six-what-is-devotion">
+<h2>Unit Six: What is Devotion?</h2>
+<p>Nothing in this Tradition is defined once. Devotion is defined in four Waves: negatively, etymologically and by Analogy, by the Authorities, and finally in the Working Definition which the Student memorises for the oral Examination.</p>
+<h3 class="sec">A. What Devotion is Not</h3>
+<p>Francis de Sales opens by clearing the Ground. Many colour Devotion according to their own Fancies. One believes himself devout because he fasts, while his Heart is full of Rancour. Another prays continually and uses angry, proud and injurious Language. A third gives Alms and will not forgive an Enemy. Devotion is not Devotions; the Plural is the Practice, the Singular is the Disposition.</p>
+<h3 class="sec">B. the Definition</h3>
+<p>True Devotion is no other Thing than a true Love of God. When Charity reaches the Perfection at which we not only do Good, but do so carefully, frequently and readily, then it is called Devotion.</p>
+<p>&quot;In short, devotion is no other thing than a spiritual nimbleness and vivacity, by means of which charity works in us, or we by her, readily and heartily.&quot;</p>
+<p>Note the Structure of the Definition. Charity is the Substance; Devotion is the Speed, the Ease and the Joy of Charity. Devotion is not a separate Virtue added to Love. It is Love in good running Order. If Charity is the Spiritual Fire, Devotion is the Flame.</p>
+<h3 class="sec">C. Devotion Adapted to Every State</h3>
+<p>&quot;In the creation God commanded the plants to bring forth their fruit, each after its kind: even so he commands Christians, who are the living plants of his Church, to bring forth fruits of devotion, each one according to his kind and vocation.&quot;</p>
+<p>Devotion never spoils anything, but rather perfects all Things, like the Bee that draws its Honey from the Flower without injuring the Flower. It is suited to the Gentleman, the Artisan, the Servant and the Married Woman.</p>
+<h3 class="sec">D. Philothea and Theotimus</h3>
+<p>The two great Books have two Addressees, and the Names carry the Doctrine. Philothea means the Lover of God, and she receives the Introduction to the Devout Life. Theotimus means the one who honours God, and he receives the Treatise on the Love of God, being the Soul already advanced. The Rhetorical Device is itself the Thesis: neither Book has a Vocational Entry Requirement.</p>
+<p><strong>EXAMPLE: </strong>Give the Class a Test Case. A Trader in Burrabazar keeps his Accounts honestly, refuses a Bribe, closes early on Sunday for the Eucharist and is short-tempered with his Employees. Is he devout? By the Salesian Criterion he possesses Charity and lacks Devotion, because the Love in him is not yet prompt, easy and joyful. The Diagnosis is precise, and so is the Remedy: not more Fasting, but Gentleness.</p>
+</section>
+<section class="chapter" id="unit-seven-the-four-works">
+<h2>Unit Seven: The Four Works</h2>
+<p>Four Bodies of Writing carry the Doctrine, and the Student should be able to name each with its Date, its Addressee and its single governing Idea.</p>
+<h3 class="sec">A. the Catholic Controversy (Tracts of 1594 to 1598)</h3>
+<p>The Chablais Leaflets, later collected. Its Argument turns on the Question of Mission. To be a Pastor of Souls is to be an Ambassador of Jesus Christ, and an Ambassador must be sent. &quot;How shall they preach, says the Apostle, unless they be sent?&quot; (Rom 10:15).</p>
+<p>The Ministers could claim no ordinary Mission, since the Laity have none and therefore cannot give it, and since the Catholic Bishops either constituted the true Church, in which Case the Reformers were Heretics for leaving it, or a false Church, in which Case there was no Mission to give. Nor could they claim an extraordinary Mission, since such a Claim requires Proof by Miracles, as with Moses and the Apostles.</p>
+<p>Against the Principle of Scripture Alone he pressed a simple Point: the Reformers had themselves amputated Books of the Bible which contradicted their Doctrines, among them the Books of the Maccabees and Ecclesiasticus, which support Prayer for the Dead and Free Will. His own Rule of Faith is a single Sentence worth memorising.</p>
+<p>&quot;The sole and true rule of right-believing is the Word of God preached by the Church of God.&quot;</p>
+<p>The Tone is as important as the Argument. He addressed Calvinists as dear Brothers and beloved Fellow-Countrymen, and when Catholic Zealots objected he ignored them, holding that turbulent Zeal, which is neither moderate nor wise, pulls down in Place of building up. In 1597 he disputed publicly at Geneva with Theodore Beza, the Successor of Calvin, with complete Courtesy; Beza did not convert, but the two debated in Public so that all might see how Christian Gentlemen may differ in Principle and not in Affection.</p>
+<p>Three Maxims of Salesian Evangelisation follow, and they should be written on the Wall of every Formation House. Truth which is not charitable proceeds from a Charity which is not true. To force the Mind to believe is to force it from all Belief. Love and Affection have a greater Empire over Souls than Harshness and Severity.</p>
+<h3 class="sec">B. the Introduction to the Devout Life (1609)</h3>
+<p>Five Parts, and the Student should be able to reproduce them on a Blackboard. First, Purgation: the Desire for Devotion is converted into a firm Resolution by a General Confession and by Purification from Sin and from the Affection to Sin, assisted by ten Meditations on Creation, the End for which we are made, the Benefits of God, Sin, Death, Judgement, Hell, Paradise and the Choice of the Devout Life. Second, Prayer and the Sacraments, by which God draws us and comes to us. Third, the Practice of the Virtues. Fourth, the Combat against Temptations. Fifth, the Renewal of Resolutions.</p>
+<h3 class="sec">The Method of Prayer</h3>
+<p>Preparation, which places the Soul in the Presence of God, invokes his Assistance, and represents the Mystery to the Imagination in the Composition of Place. Considerations, which are the Work of the Understanding upon Divine Things, not to learn them but to make ourselves love them. Affections and Resolutions, in which the Will is stirred, and, decisively, the Affection is converted into special and particular Resolutions for Correction and Amendment. And the Spiritual Nosegay, in which one or two Points of greatest Relish are gathered like Flowers from a Garden, to be inhaled throughout the Day.</p>
+<p>The Salesian Test of a Meditation is exact. Did it produce a particular Resolution? The Sentence I will be more patient fails the Test. The Sentence I will not answer sharply when that Confrere interrupts me at Recreation passes it.</p>
+<h3 class="sec">Direction of Intention</h3>
+<p>&quot;Do all things, then, in the name of God, and all things will be well done. Whether you eat or drink, or recreate yourself... you will profit much in the sight of God, doing all these things because God wishes you to do them.&quot;</p>
+<h3 class="sec">C. the Treatise on the Love of God (1616)</h3>
+<p>Twelve Books in five Movements. Books One to Four lay the Foundations: the Will, the Birth of Divine Love, its Progress, and its Decay. Book Five treats the two Exercises of Holy Love, Complacency and Benevolence. Books Six and Seven treat Prayer, from Meditation into Contemplation and Mystical Union. Books Eight and Nine treat Conformity to the signified Will and Submission to the Will of Good Pleasure. Books Ten to Twelve treat the Sovereignty of Charity over all the Virtues and give practical Counsels. Unit Eleven of these Notes takes it in detail.</p>
+<h3 class="sec">D. the Letters, More Than Two Thousand</h3>
+<p>A Genre in itself: practical, affectionate and customised, written for Laypeople in every Walk of Life. No Monastic Austerity is imposed on People living in the World; instead there are Rules of Conduct, Humility, Patience and the faithful Execution of the daily Duty. The Letters are the Laboratory, and the Introduction to the Devout Life is simply a Set of these Letters, edited. The Doctrine of the Universal Call was not deduced from a Principle. It was extracted from twenty Years of Correspondence with Laypeople who were actually becoming holy where they were.</p>
+</section>
+<section class="chapter" id="unit-eight-the-polarities-of-salesian-sp">
+<h2>Unit Eight: The Polarities of Salesian Spirituality</h2>
+<p>Salesian Doctrine holds Opposites together. Seven Pairs govern the whole System. In each Case, state the Thesis, state the Counter-Pull, and hold both.</p>
+<p><strong>1. Love and Fear.</strong> The Fear of the Lord is the Beginning of Wisdom and Francis de Sales never abolishes it. But, it is better to fear God from Love than to love him from Fear; to love God from Fear is to put Gall into our Food, while to fear God from Love is to sweeten Aloes and Wormwood.</p>
+<p><strong>2. Nature and Grace.</strong> The Human Nature is genuinely wounded, and cannot execute the supreme Love of God without supernatural Grace, having, like the Eagle, far more Sight than Flight. But, the natural Inclination to love God above all Things survives the Fall as a Spark hidden among Ashes, and Grace does not overpower Liberty; Grace entices the Heart.</p>
+<p><strong>3. Gentleness and Firmness.</strong> The Rule is to be as gentle as one can, since more Flies are caught with a Spoonful of Honey than with a hundred Barrels of Vinegar. But, the same Man faced down the Duke of Savoy over the unjust Exile of his Brothers and refused two Bishoprics. Gentleness has a Spine, or it is not Salesian.</p>
+<p><strong>4. Interior and Exterior.</strong> All is Love, and in Love, for Love, and of Love, and the Mortification of the Heart is preferred to the Mortification of the Body. But, the Interior Life is carried on a fixed Sacramental Discipline of daily Mass, weekly Confession and frequent Communion, without which Salesian Gentleness degenerates into mere Good Humour.</p>
+<p><strong>5. Will and Feeling.</strong> Devotion is not measured by sensible Fervour, and the superior Will, which is our Compass, must ever be fixed on the Love of God. But, the Affections are not despised; the Heart is the Centre of the Person, and Prayer is Heart speaking to Heart.</p>
+<p><strong>6. The Individual and the State of Life.</strong> Each is to practise the Virtues requisite to his own Vocation and not those he finds attractive. But, the Devout Life is never Private; it is exercised in Friendship, in Family, in Society, and it perfects rather than withdraws from these.</p>
+<p><strong>7. Activity and Indifference.</strong> We must manage our Affairs diligently and hold fast the Heavenly Father with one Hand while gathering worldly Goods with the other, as Children do. But, the Term of the whole Journey is Holy Indifference, in which the Heart becomes a Ball of Wax before the Good Pleasure of God.</p>
+<p>The Unit closes with the Aphorism that governs all seven: Ask for nothing, refuse nothing, imitate Jesus in his Cradle.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> The seventh Polarity deserves an Indian Reading. Holy Indifference is easily confused with a fatalistic Reading of Karma, in which whatever befalls is deserved and Resistance is impious. The Salesian Indifference is not Resignation to a System. It is Refuge taken in a Person who is Good. The Difference is the Difference between accepting a Flood and accepting a Father. Preach the second and never the first, particularly to Communities whose Suffering is caused by Injustice rather than by Providence.</p>
+</section>
+<section class="chapter" id="unit-nine-the-sacramental-floor-and-the-">
+<h2>Unit Nine: The Sacramental Floor and the Daily Exercises</h2>
+<p>Salesian Interiority does not float. The whole Edifice of Gentleness and Indifference rests on a hard Sacramental Floor, and any Presentation of this Saint which omits the Floor has presented a Mood and not a Spirituality.</p>
+<h3 class="sec">A. the Eucharist</h3>
+<p>The Mass is the Sun of Spiritual Exercises, the Heart of Devotion and the Soul of Piety. Assist daily where possible; where impossible, assist by a Spiritual Presence, uniting the Intention with the Faithful. Of frequent Communion he taught that those who communicate often strengthen the Soul so effectively that it becomes almost impossible for them to be poisoned by any Evil Affection. The Counsel is graduated: every Sunday for the Soul free from the Affection to Sin, up to daily under the Guidance of a Director, and, for those burdened with worldly Affairs or with resistant Families, never an Interval longer than a Month.</p>
+<h3 class="sec">B. Confession and the Examen</h3>
+<p>Confess humbly and devoutly once a Week, and always before Communion. Beginners should make a General Confession. Against vague Accusation he is severe: not the Formula that one has not loved God enough, but the Facts, the Duration and the Motives. Every Evening the Examen: Thanksgiving for the Day, Examination of Behaviour and Occupations, Sorrow, and the Commendation of Soul, Family and Church to Providence.</p>
+<h3 class="sec">C. the Marian Thread</h3>
+<p>He was born in August, within the Octave of the Assumption. The Memorare delivered him from Despair at Paris, and he taught that Prayer to his Penitents for the rest of his Life. He vowed the daily Rosary on the same Occasion, and renewed his Consecration to Jesus and Mary at the Holy House of Loreto. He named his Order after the Visitation, deliberately, so that the Sisters would imitate the Charity and the Humility of Mary in visiting, holding together the active Part of Martha and the contemplative Part of Mary.</p>
+<h3 class="sec">D. the Heart</h3>
+<p>He conceived the Visitation as the Work of the Hearts of Jesus and of Mary, holding that the dying Saviour brought us forth through the Wound in his Sacred Heart. He gave the Order its Coat of Arms, and the Student should be able to describe it: a Heart pierced with two Arrows, encircled by a Crown of Thorns, surmounted by a Cross, and engraved with the sacred Names of Jesus and Mary. From this Salesian Heart-Tradition the universal Devotion to the Sacred Heart later emerged, entrusted to the Visitandine Saint Margaret Mary Alacoque.</p>
+<h3 class="sec">E. the Daily and Annual Exercises</h3>
+<p>The Morning Exercise: Thanksgiving for the new Day, the Resolve to employ it for Eternity, the Foresight of the Occasions and Temptations it will bring, and the Offering of the Heart. Through the Day: the Direction of Intention, the Aspirations, and the Spiritual Retreat into the Heart. In the Evening: the Examen. Once a Year: the Retreat, for the Soul is like a Clock which must be taken apart, cleaned and oiled annually.</p>
+<p>Two Practices he calls, in a striking Phrase, the great Work of Devotion: the Ejaculatory Prayers, which are short but swift Dartings of the Soul into God, and the Spiritual Retreat into the Solitude of the Heart. As Birds retreat to their Nests, so the Soul pulls back to rest near Jesus, and even in the busiest Society one may build a small interior Oratory. He teaches that these Aspirations can supply for a Lack of formal Mental Prayer. Everything else may fail; this cannot be dispensed with.</p>
+<p><strong>EXAMPLE: </strong>This is the Doctrine that saves the Pastoral Priest. The Parish Priest of a large Mission with four Substations cannot always guarantee the settled Hour of Meditation. Francis de Sales does not scold him. He gives him the Jeep, the Cycle and the waiting Room as Places of Prayer, on condition that the Dartings are frequent and the Direction of Intention is renewed. What he does not permit is the Abandonment of the Mass, the Confession and the annual Retreat.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> The Practice of Aspirations has a natural Indian Resonance in the Repetition of the Divine Name, in Japa and in the Nama-Smarana of the Bhakti Traditions. The Salesian Aspiration is short, affective and constant, exactly as the Name is in Bhakti Practice. Here is a genuine Point of Inculturation which requires no Compromise: the Form is already familiar to the Indian Heart, and the Content is the Name of Jesus.</p>
+</section>
+<section class="chapter" id="unit-ten-the-virtues-and-the-spiritual-c">
+<h2>Unit Ten: The Virtues and the Spiritual Combat</h2>
+<p>Salesian Asceticism is governed by Vocation and not by Taste. The Student does not choose the Virtues he admires; he practises the ones his State of Life actually demands.</p>
+<h3 class="sec">A. Three Rules for Choosing Virtues</h3>
+<p>First, choose according to Duty and not according to Attraction. The Bishop, the Prince, the Soldier, the Married Woman and the Widow are all called to Devotion, and each requires different Virtues. Second, prefer the most excellent Virtues to the most esteemed ones. The World values severe bodily Austerity; Gentleness, Modesty and the Mortification of the Heart are far superior. Third, remember that the Virtues most often required in daily Life are the lesser and general ones: Gentleness, Temperance, Modesty and Humility.</p>
+<p>Above all stands Charity, the Queen of Virtues and the Sun among the Stars, giving Life, Beauty and Perfection to all the rest. Without Charity the other Virtues are dead or gravely imperfect.</p>
+<h3 class="sec">B. the Little Virtues</h3>
+<p>Men desire the dazzling Virtues at the Summit of the Cross, but very few are anxious to gather those which, like wild Thyme, grow at the Foot of that Tree of Life, although these give out the sweetest Perfume. Perfection, concretely, consists in kindly Concessions to the exacting Temper of the Neighbour, in gentle Tolerance of his Imperfections, and in Patience with Importunity.</p>
+<p><strong>Humility.</strong> To receive the Grace of God into our Hearts, they must be void of our own Glory. The highest Point of Humility is not merely to acknowledge our Abjection but to love it. Yet Humility must not be confused with Neglect of the good Name: Charity itself requires Care of Reputation for the Edification of the Neighbour, though never with Anxiety. Under Calumny, state the Innocence calmly and once; if the Slander persists, conquer it by Silence, Patience and Constancy.</p>
+<p><strong>Gentleness.</strong> Humility perfects us in Regard to God, and Gentleness in Regard to the Neighbour. Anger must be repelled promptly, for given the slightest Opportunity it makes itself Mistress of the Place.</p>
+<p><strong>Patience.</strong> Necessary in order to possess our Souls. It extends beyond honourable Tribulation, such as Persecution for Religion, to the ignominious and abject Kind: Contempt from Friends, Illness at an inconvenient Time. The truly patient Person does not complain nor fish for Pity, but states the Ill truthfully and simply.</p>
+<p><strong>Obedience.</strong> Necessary Obedience is owed to Ecclesiastical, Civil and Domestic Superiors. Perfect Obedience goes further: it follows cheerfully the Counsels and Inclinations of Superiors, obeys in disagreeable Matters, and yields even to Equals and Inferiors where Reason permits. Obedience to a harsh Superior proves more than Obedience to a gentle one, since it shows that we obey God and not our Affection for the Person.</p>
+<p><strong>Chastity.</strong> The Lily of the Virtues. Purity of Heart does not consist in Freedom from Temptation, which is impossible, but in never consenting to it. The sovereign Remedy is Closeness to Jesus Christ crucified, through Meditation and Holy Communion.</p>
+<p><strong>Poverty.</strong> One may be rich in Fact and poor in Spirit, for he is poor in Spirit who has no Riches in his Spirit nor his Spirit in his Riches. But the Rich Man who is serious must actually deprive himself, give generously, associate with the Poor and treat them as Equals. Poverty which is despised and unassisted is the most excellent Kind.</p>
+<h3 class="sec">C. Holy Zeal and Bitter Zeal</h3>
+<p>True Zeal is simply the Ardour of Charity: patient, kind, diligent and careful, and its most excellent Use lies in suffering and enduring much in order to hinder Evil. Bitter Zeal is impetuous, fierce and harsh; it pardons nothing, exaggerates the smallest Faults, and acts out of Anger and Pride disguised as Righteousness. The Distinction is the most useful Pastoral Instrument in this whole Course, because Bitter Zeal always believes itself to be Holy Zeal.</p>
+<h3 class="sec">D. the Spiritual Combat</h3>
+<p>The foundational Distinction: to feel a Temptation is not to consent to it. So long as the Temptation displeases us, there is no Consent and there is no Sin. God permits Temptation to test Fidelity and to increase the Crown.</p>
+<p>For great Temptations, which are violent and comparatively rare, there are five Remedies: cry out to God as a Child runs to its Mother, embrace the Cross, divert the Mind with praiseworthy Occupation, reveal the Temptation to the Spiritual Director, which is the sovereign Remedy, and never dispute or argue with the Enemy.</p>
+<p>For the small daily Temptations, which are the buzzing Flies of Irritability, Suspicion, Jealousy and Vanity, the Rule is different. Do not fight them directly. Drive them away gently by an Act of the contrary Virtue, or simply turn the Heart towards Jesus Christ crucified in an Act of Love. The Reason for the Asymmetry is worth teaching: to dispute with a small Temptation is to give it the Attention it wants. Salesian Combat is Redirection and not Wrestling.</p>
+<h3 class="sec">E. Sadness, Joy and Anxiety</h3>
+<p>There is a Holy Sadness, which is Repentance for Sin and Compassion for the Neighbour. But worldly Sadness and Melancholy are grave Spiritual Dangers: they oppress the Brain, breed inordinate Fears, cause Distaste for Prayer and paralyse the Soul. The Remedies are persistent Prayer, the singing of spiritual Canticles, varied exterior Work, and Acts of Fervour performed even when entirely dry. A devout Life should be marked by holy Joy, and a moderate and unaffected Gaiety should predominate in Company.</p>
+<p>&quot;Disquietude is the greatest evil that can befall the soul, except sin.&quot;</p>
+<p>Anxiety arises from an eager and immoderate Desire to escape an Evil or to obtain a Good. It disturbs the Reason, spoils the Work in Hand and leaves the Soul open to the Enemy. Manage the Affairs diligently; avoid Eagerness, Solicitude and Anxiety absolutely.</p>
+<h3 class="sec">F. Discernment of Inspirations</h3>
+<p>Inspiration mirrors Temptation in Reverse: God proposes, we take Delectation, we consent and act. Three Marks identify a genuine heavenly Inspiration: Perseverance, as against Inconstancy and fickle Levity; Peace and Gentleness of Heart, as against Disquiet and Turbulence; and humble Obedience to the Church and to Superiors, which guards against Obstinacy and Illusion. And one Anti-Scruple Rule: in small everyday Matters where two good Options barely differ, do not torture yourself with Discernment; choose freely and walk in good Faith.</p>
+<p><strong>EXAMPLE: </strong>Apply the three Marks to a familiar Formation Case. A Student announces that he is inspired to leave the Seminary for a stricter Order. Mark One asks whether the Desire has persevered or arrived last Monday. Mark Two asks whether it brings Peace or Agitation. Mark Three asks whether he has submitted it to the Director or is defending it against him. Two Marks failing is a Diagnosis, not a Condemnation.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> The Salesian Doctrine of Anxiety deserves careful Indian Application. Our Students carry Family Debt, Land Disputes, sick Parents and the Expectations of a whole Village. To tell such a Student that Disquietude is the greatest Evil after Sin can sound like Cruelty unless it is said correctly. Francis de Sales does not forbid Concern; he forbids the Eagerness that destroys the Work. The Counsel is to hold the Father with one Hand while gathering the Berries with the other, which is precisely a Counsel for those who must in fact gather Berries.</p>
+</section>
+<section class="chapter" id="unit-eleven-the-treatise-the-two-wills-a">
+<h2>Unit Eleven: The Treatise, the Two Wills and Holy Indifference</h2>
+<p>Where the Introduction gives the Method, the Treatise gives the Theology: a complete Account of Charity from its first natural Spark to the Death of the Will in God.</p>
+<h3 class="sec">A. the Heart and the Will</h3>
+<p>God has planted in the human Heart a natural Inclination to love him above all Things. Original Sin wounded but did not destroy it: it remains like a Spark hidden among Ashes, the Handle by which preventing Grace takes hold of us. Yet we do not naturally possess the Power to execute this supreme Love without supernatural Grace, having, like the Eagle, far more Sight than Flight.</p>
+<p>In this cordial Anthropology the Heart is the Centre of the Person and the Will is a natural Monarchy governing the other Faculties. It commands the exterior Movements like Slaves, but it must manage the sensual Appetite and the Passions like Horses or Hawks, by Skill and Gentleness and not by Decree. Love is the first and principal Affection of the Will, the Root from which Hope, Fear, Desire and Grief derive; and the Will becomes what it loves.</p>
+<h3 class="sec">B. Complacency and Benevolence</h3>
+<p>Holy Love has two Exercises. Complacency is the Delight of the Soul in contemplating the Perfections of God, by which the Soul draws those Perfections into itself, spiritually drinking and eating the Divine Goodness. Benevolence runs in the opposite Direction: it casts the Heart into God, desiring him all Honour and Glory. Since the Goodness of God is already infinite and cannot be increased, Benevolence expresses itself in perpetual Praise and in summoning all Creation to magnify the Name of God.</p>
+<h3 class="sec">C. the Two Wills of God</h3>
+<p>The signified Will of God is made known through the Commandments, the Evangelical Counsels and holy Inspirations, and we unite ourselves to it by active Conformity and Obedience. The loving Heart does not merely endure the Commandments but finds them sweet, because they please the Beloved. The Will of Good Pleasure is the absolute providential Will, revealed through Events, Circumstances and Tribulations, and we unite ourselves to it passively, by Submission, Resignation and Holy Indifference.</p>
+<h3 class="sec">D. Resignation and Holy Indifference</h3>
+<p>Do not confuse these two, for the Examination will ask. Resignation submits, but with Effort and with a lingering Self-Interest: one accepts Death patiently and would still genuinely prefer to live. Holy Indifference loves nothing except for the Love of the Will of God, and no residual Preference remains to be overcome.</p>
+<p>&quot;The indifferent heart is like a ball of wax in the hands of its God, receiving with equal readiness all the impressions of the eternal good pleasure; it is a heart without choice, equally disposed for everything, having no other object of its will than the will of its God.&quot;</p>
+<h3 class="sec">E. the Five Images</h3>
+<p>Memorise these, for they carry the Doctrine better than the Definitions. The <strong>deaf Lutenist</strong> is a Master Player who loses his Hearing and continues to play perfectly to please his Prince, taking no Pleasure in the Music himself: this is Service in total Dryness, purely for the Will of God. The <strong>Statue in the Niche</strong> stands exactly where the Prince placed it, content to be there: this is Holy Indifference resting in Providence. The <strong>Child at the Breast</strong> clings to the Neck of the Mother and draws Milk without asking where the Mother is walking: this is the Prayer of Quiet. The <strong>Bees</strong> gathering Nectar from Flower to Flower represent Meditation, while relishing the gathered Honey represents Contemplation. The <strong>Eagle</strong> has far more Sight than Flight: the Intellect sees the Goodness of God clearly, and the wounded Will cannot fly to him without Grace.</p>
+<h3 class="sec">F. the Ecstasy of Act and Life</h3>
+<p>Here is the decisive Move of the whole Treatise, and the Reason why Salesian Mysticism is not Elitist. True Ecstasy is not the Suspension of the Senses nor emotional Rapture. The supreme Proof of Love is the Ecstasy of Act and Life: to live supernaturally, elevated above natural Instinct, so wholly governed by Charity that one may say with Saint Paul, &quot;It is no longer I who live, but Christ who lives in me&quot; (Gal 2:20). The Mystical Summit is therefore a Way of Living and not a State of Consciousness, and it is available, in Principle, to Philothea in the Marketplace.</p>
+<p>Mount Calvary is the Academy of Love. Love and Death are so mingled in the Passion of our Saviour that we cannot have the one in our Heart without the other. During this mortal Life we must choose eternal Love or eternal Death; there is no middle Choice.</p>
+<p><strong>A NOTE FOR THE CLASSROOM: </strong>One Text in Book Nine regularly disturbs Students: the Claim that the indifferent Soul would prefer Hell to Heaven if the Good Pleasure of God were more present there. This is a rhetorical Limit-Case in the Tradition of the Impossible Supposition, used to measure the Purity of the Motive. It is not a Statement about a real Possibility. Note also the biographical Irony: the Man who writes this Sentence is the same Man who at nineteen was destroyed by the Fear of Reprobation. The Sentence is the Measure of the Distance he travelled.</p>
+</section>
+<section class="chapter" id="important-question">
+<h2>Important Question</h2>
+<p>Mary arose and went with haste into the hill country. Where is the hill Country of India today, and who is waiting there?</p>
+<p>Is the Gentleness of Francis de Sales adequate to a Nation where the Church is a Minority under Pressure, where Anti-Conversion Laws multiply, and where the Poor are told to be patient by those who benefit from their Patience?</p>
+</section>
+<section class="chapter" id="unit-twelve-the-indian-horizon">
+<h2>Unit Twelve: The Indian Horizon</h2>
+<h3 class="sec">A. Beyond Compare: De Sales and Vedanta Desika</h3>
+<p>Francis Xavier Clooney, of the Society of Jesus, has read the Treatise on the Love of God alongside the Srimad Rahasyatrayasara of Sri Vedanta Desika, the Essence of the Three Auspicious Mysteries. The Study is not an ordinary Comparison cataloguing Similarities and Differences. Clooney calls his Method a double Reading: the Reader engages both Texts simultaneously, moving back and forth, allowing neither Text to dominate or shadow the other, and submitting to the transformative Purpose which both Authors intended.</p>
+<p>The uniting Value is loving Surrender. In the Srivaisnava Tradition of Vedanta Desika this is Prapatti or Saranagati, the taking of Refuge: a radical and irrevocable Self-Giving in which the Devotee relinquishes the Burden of autonomous Self-Protection and reshapes Life around Narayana and the Goddess Sri. In the Catholic Tradition of Francis de Sales the Parallel is Holy Indifference and Submission to the Will of Good Pleasure, in which the surrendered Soul becomes a Ball of Wax in the Hands of God.</p>
+<p>Both Theologians affirm total Dependence on divine Grace, and both refuse to let that Dependence abolish human Freedom. Francis de Sales holds that Grace entices the Heart with a holy Violence which leaves the Will free to consent or to resist. Vedanta Desika holds that the Grace of the Lord is absolutely prior and sufficient, while human Action is nevertheless required as a Pretext for the saving Intervention of God: the Devotee must actually choose to seek a Protector and confess his own Helplessness.</p>
+<p>The Rhetoric diverges sharply even where the Content converges. Clooney describes the Prose of Francis de Sales as a great River of Narrative which seeks to inflame the Heart, full of Analogies from Nature and from romantic Love, dramatic Exemplars and intimate Address to Theotimus. He describes the Prose of Vedanta Desika as a Laser piercing the Darkness: crisp analytical Discourse, dense Anthologies of scriptural Citation, and meticulous word-by-word Exegesis of the Dvaya Mantra, with strategic Shifts between Prose and Poetry, Tamil and Sanskrit.</p>
+<p><strong>EXAMPLE: </strong>Here is a precise Argument for the Classroom about Inculturation. The Content converges, since both teach loving Surrender under sovereign Grace without the Destruction of Freedom. The Rhetoric diverges completely. Therefore Inculturation cannot be reduced to the Translation of Doctrine into local Vocabulary. The Form of a Text, which is to say how it works upon a Reader, is itself Theological. A Salesian River preached to an Audience formed by the Desika Laser will not land, and the Reverse is equally true.</p>
+<p>Clooney holds that a Catholic may profoundly appropriate the Srivaisnava Riches while remaining fully Catholic, and that the Fruit of such double Reading is a rare Kind of Believer: deeply rooted in one Tradition and fearlessly open to the other. He aligns the Practice with Scriptural Reasoning, but relocates the Dialogue: it is interior, within the individual Reader, before it is a social Conversation between Communities.</p>
+<h3 class="sec">B. Three Indian Applications</h3>
+<p><strong>1. Bhakti and Douceur.</strong> The cordial Anthropology of Francis de Sales, in which the Heart is the Seat of the Person and Love is the first Affection of the Will, stands structurally close to the Bhakti Centring on the Heart. It offers a more natural Bridge into Indian Religious Sensibility than a Scholastic Anthropology of Intellect and Will.</p>
+<p><strong>2. Prapatti as a Corrective Lens.</strong> Reading the Treatise through Saranagati recovers the relational Character of Holy Indifference. It is not Stoic Apathy. It is Refuge taken in a Person. This is a useful Correction of a Western Misreading of Book Nine, and it is also the Answer to the fatalistic Misuse noted in Unit Eight.</p>
+<p><strong>3. Gentleness as Missionary Method.</strong> The Chablais Precedent, which refuses Coercion and insists that Affection precedes Conviction, is directly usable in a pluralist and often hostile Indian public Square. The Man who called Calvinists his dear Brothers while calling their Claims false has something exact to teach a Church accused of Proselytism: Charity towards Persons, Severity towards Claims, and the two never confused in either Direction.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> Take one concrete Case. When a Village Community in Bengal or Jharkhand accuses the Church of Conversion by Inducement, three Responses are available. Silence, which concedes the Charge. Counter-Attack, which confirms it. Or the Chablais Method: sustained Presence, clear and unapologetic Teaching, refusal of Invective, and Service which is offered without Conditions. The third takes four Years rather than four Weeks, exactly as it did in the Chablais.</p>
+</section>
+<section class="chapter" id="unit-thirteen-legacy-and-the-salesian-fa">
+<h2>Unit Thirteen: Legacy and the Salesian Family</h2>
+<p>Saint Vincent de Paul considered Francis de Sales the best Christian he had ever met, so gentle and dignified that it seemed as though Christ himself once more walked the Earth; and Francis de Sales called Vincent the holy Priest, the best and noblest Man he had ever known.</p>
+<h3 class="sec">A. the Congregations</h3>
+<p>The Order of the Visitation of Holy Mary was founded in 1610 with Saint Jane Frances de Chantal, to receive Virgins, Widows and Matrons who are weak, ill or advanced in Years. Calling himself a Partisan of the Infirm, Francis de Sales designed a hidden and humble Life without corporal Austerities, in which the Mortification of the Soul was substituted for that of the Flesh and the Crucifixion of the Will for that of the Body. The Spirit of the Visitation, in his own Words, is one of humble Love of God and extreme Sweetness towards the Neighbour.</p>
+<p>The Missionaries of Saint Francis de Sales, the Fransalians, were founded in 1838 at Annecy by Father Peter Mermier under Bishop Pierre-Joseph Rey, for the Preaching of Parish Missions and, from 1845, for the Foreign Missions, beginning in India. The Salesians of Don Bosco were founded at Turin in 1859 by Saint John Bosco, who took the Name and the Manner of Francis de Sales for his Work among the Young.</p>
+<p>Observe the Division of the Inheritance. Don Bosco took the Manner, which is Gentleness and Hope with the Young. Mermier took the Method, which is the Chablais Model of preaching Missions to re-evangelise a de-Christianised Countryside, carried afterwards to India. Both are legitimate Heirs of different Halves of one Life: the Chablais Missioner and the gentle Director.</p>
+<h3 class="sec">B. Titles</h3>
+<p>Beatified in 1661 and canonised in 1665 by Alexander VII. Declared Doctor of the Church in 1877 by Pius IX, and known traditionally as the Doctor of Charity. Named Patron of Catholic Writers and Journalists in 1923 by Pius XI, on Account of the Chablais Tracts, which remain the first great Instance of Evangelisation by the printed Word.</p>
+<p><strong style="color:var(--wine)">Indian Context.</strong> The Patronage of Journalists is not an Antiquarian Detail for an Indian Church living under Digital Conditions. The Chablais Method was, in the Language of our Day, the Circumvention of a Media Blockade by taking the Message directly into Homes. Every Seminarian who now holds a Smartphone holds the Printing Press of Francis de Sales. The Question he would ask is not whether we are online but whether what we place there is Truth spoken in Charity, or Vinegar.</p>
+</section>
+<section class="chapter" id="unit-fourteen-vive-jesus">
+<h2>Unit Fourteen: Vive Jesus</h2>
+<p>The whole Doctrine converges on a single Formula. God deals with the Heart; the Preacher speaks Heart to Heart; the Soul prays Heart to Heart; and the End is the Substitution of Hearts.</p>
+<p>&quot;To love, or to die! To die and to love! To die to all other love in order to live to Jesus&#x27; love, that we may not die eternally, but that living in Thy eternal love, O Saviour of our souls, we may eternally sing, Vive Jesus, Live Jesus. I love Jesus. Live Jesus, Whom I love! I love Jesus, Who lives and reigns for ever and ever. Amen.&quot;</p>
+<p>Whoever has Jesus in the Heart will soon have him in all his exterior Actions. That is the Reason why the Motto is not a pious Slogan but the Shorthand of the entire System, and the Reason why the Symbol of this Family is a Heart and not a Book.</p>
+<p>And so the Leitmotif returns a third Time. Mary arose and went with haste; she greeted; the Child leaped for Joy; she sang of the Mighty put down and the Lowly exalted; she stayed three Months; and she returned to her own House. The Devout Life is that Journey, repeated in a Parish in Asansol, in a Hostel in Barrackpore, in a Mission Station in the Hills, until the Evening comes and the Day is far spent, and there remains one Word to say.</p>
+<p><strong><em>Vive Jesus.</em></strong></p>
+</section>
+<section class="chapter" id="review-questions">
+<h2>Review Questions</h2>
+<h3 class="sec">A. Short Answer</h3>
+<div class="review"><h4>Review Questions</h4><ol>
+<li>Give the Salesian Definition of Devotion and distinguish it from three false Devotions.</li>
+<li>Narrate the Paris Crisis of 1586 to 1587 and state its Consequence for the later Doctrine.</li>
+<li>Why did Francis de Sales resort to printed Tracts in the Chablais, and what is the Result by 1598?</li>
+<li>State the Rule of Faith of Francis de Sales in one Sentence.</li>
+<li>Distinguish Resignation from Holy Indifference, using the Image of the Ball of Wax.</li>
+<li>Explain the Ecstasy of Act and Life and say why it is superior to the Ecstasy of Prayer.</li>
+<li>Name the five Salesian Images and state what each teaches.</li>
+<li>Give the three Marks of a genuine Inspiration.</li>
+<li>Describe the Coat of Arms of the Visitation.</li>
+<li>Why is Francis de Sales the Patron of Journalists?</li>
+</ol></div>
+<h3 class="sec">B. Essay</h3>
+<div class="review"><h4>Review Questions</h4><ol>
+<li>&quot;It is an error, nay rather a heresy, to wish to banish the devout life...&quot; Assess the Claim that Francis de Sales anticipated the Universal Call to Holiness of Lumen Gentium 39 to 42, and state what the Council added.</li>
+<li>&quot;Gentleness is not a Temperament but an Ascesis.&quot; Discuss with Reference to the Testimony of Jean-Pierre Camus and to the Chablais Mission.</li>
+<li>Expound the Doctrine of the two Wills of God in Books Eight and Nine of the Treatise, and evaluate Holy Indifference as an Ideal of Christian Maturity. Does it risk Passivity?</li>
+<li>Analyse the Method of Controversy of Francis de Sales. How does he combine calling his Opponents Brothers with calling their Ministers Impostors, and is the Combination coherent?</li>
+<li>Using the Study of Clooney, evaluate Holy Indifference and Prapatti as parallel Doctrines of loving Surrender. What does the Comparison illuminate, and what might it distort?</li>
+<li>Does the Salesian Formula, each according to his own Kind and Vocation, support or subvert a Caste-ordered Account of Duty in India? Argue carefully.</li>
+<li>Salesian Devotion is often reduced to a Mood. Show from the Sacramental Discipline that it is a structured Regime, and state what is lost when the Structure is dropped.</li>
+</ol></div>
+</section>
+<section class="chapter" id="select-bibliography">
+<h2>Select Bibliography</h2>
+<h3 class="sec">A. Primary Sources</h3>
+<p>Francis de Sales. Introduction to the Devout Life. 1609.</p>
+<p>Francis de Sales. Treatise on the Love of God. 1616.</p>
+<p>Francis de Sales. The Catholic Controversy: A Defense of the Faith. Tracts of 1594 to 1598.</p>
+<p>Francis de Sales. Oeuvres completes. Annecy Edition, 27 volumes. Annecy: Nierat, 1892 to 1964. The critical Edition, to be preferred for all scholarly Citation.</p>
+<h3 class="sec">B. Contemporary Testimony and Biography</h3>
+<p>Camus, Jean-Pierre. The Spirit of St. Francis de Sales. Camus was Bishop of Belley and a Directee of the Saint. Invaluable, and hagiographical, and written from Memory.</p>
+<p>Stacpoole-Kenny, Louise. St. Francis de Sales: A Biography of the Gentle Saint. London: Sands and Company. Early twentieth-century devotional Biography.</p>
+<p>Beahn, John E. A Man of Good Zeal: A Novel Based on the Life of Saint Francis de Sales. A Work of Fiction. Useful for Atmosphere and for the Quotations it transmits, and not to be cited as an independent Source of Fact.</p>
+<h3 class="sec">C. Studies</h3>
+<p>Clooney, Francis X. Beyond Compare: St. Francis de Sales and Sri Vedanta Desika on Loving Surrender to God. Washington, DC: Georgetown University Press, 2008.</p>
+<p>The Classics Made Simple: An Introduction to the Devout Life.</p>
+<h3 class="sec">D. Magisterial</h3>
+<p>Second Vatican Council. Lumen Gentium, chapter 5, nn. 39 to 42. 21 November 1964.</p>
+<p><strong>A NOTE FOR THE CLASSROOM: </strong>A Note on Sources for the Student. Three of the Works above are Devotional or Fictional rather than Critical. Where a Date, a Statistic or a Quotation matters for an Assignment, verify against the Annecy Edition or against a modern critical Study. This Note is itself an Application of the Salesian Principle that Truth which is not charitable proceeds from a Charity which is not true: Charity towards a Saint includes Accuracy about him.</p>
+</section>
+</main>
+
+<footer class="page">
+  Class notes for the Bachelor of Theology Programme, Morning Star Regional Seminary, Barrackpore &mdash; affiliated to Jnana-Deepa Pontifical Athenaeum, Pune. STUDENT EDITION. Text only, no diagrams &mdash; hierarchy carried by heading levels, bold, italic and colour.
+</footer>
