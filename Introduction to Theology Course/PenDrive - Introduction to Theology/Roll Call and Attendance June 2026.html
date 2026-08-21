@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roll Call: First Year Theology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#1F4F42;
+    --board-dark:#173A31;
+    --chalk-white:#F6F5EF;
+    --chalk-yellow:#FFD873;
+    --chalk-pink:#FF9AB0;
+    --chalk-blue:#8FD0E8;
+    --chalk-orange:#FFB05C;
+    --frame:#8A5A34;
+    --frame-light:#B98552;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.05), transparent 60%),
+      var(--board);
+    font-family:'Poppins', sans-serif;
+    color:var(--chalk-white);
+    padding-bottom:60px;
+  }
+
+  /* chalk dust texture */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.05;
+    background-image:radial-gradient(circle, #fff 1px, transparent 1px);
+    background-size:14px 14px;
+  }
+
+  .frame{
+    max-width:1000px;
+    margin:22px auto;
+    border:14px solid var(--frame);
+    border-image: linear-gradient(160deg, var(--frame-light), var(--frame)) 1;
+    border-radius:6px;
+    padding:28px 26px 40px;
+    background:var(--board-dark);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 0 60px rgba(0,0,0,0.25);
+  }
+
+  header{
+    text-align:center;
+    margin-bottom:18px;
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--chalk-yellow);
+    opacity:0.85;
+  }
+  h1{
+    font-family:'Caveat', cursive;
+    font-size:56px;
+    margin:4px 0 2px;
+    color:var(--chalk-white);
+    text-shadow: 0 0 14px rgba(255,255,255,0.08);
+  }
+  .subtitle{
+    font-size:15px;
+    color:var(--chalk-blue);
+    margin-bottom:14px;
+  }
+
+  .session-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:6px;
+  }
+  .session-row label{
+    font-size:13px;
+    color:var(--chalk-white);
+    opacity:0.8;
+    margin-right:6px;
+  }
+  .session-row input[type="text"], .session-row input[type="date"]{
+    background:rgba(255,255,255,0.08);
+    border:1px dashed rgba(255,255,255,0.35);
+    border-radius:6px;
+    color:var(--chalk-white);
+    font-family:'Poppins', sans-serif;
+    font-size:14px;
+    padding:6px 10px;
+  }
+  .session-row input::-webkit-calendar-picker-indicator{ filter:invert(1); }
+
+  .bell-strip{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:20px 0 8px;
+  }
+  .tally{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    border:2px solid transparent;
+  }
+  .tally .dot{width:10px;height:10px;border-radius:50%;}
+  .tally.present{background:rgba(143,208,168,0.12); color:#9EE6B8; border-color:rgba(158,230,184,0.4);}
+  .tally.present .dot{background:#9EE6B8;}
+  .tally.absent{background:rgba(255,154,176,0.12); color:var(--chalk-pink); border-color:rgba(255,154,176,0.4);}
+  .tally.absent .dot{background:var(--chalk-pink);}
+  .tally.late{background:rgba(255,216,115,0.12); color:var(--chalk-yellow); border-color:rgba(255,216,115,0.4);}
+  .tally.late .dot{background:var(--chalk-yellow);}
+  .tally.unmarked{background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.55); border-color:rgba(255,255,255,0.2);}
+  .tally.unmarked .dot{background:rgba(255,255,255,0.4);}
+
+  .instructions{
+    text-align:center;
+    font-size:13px;
+    color:rgba(255,255,255,0.55);
+    margin:14px 0 24px;
+  }
+
+  .group-title{
+    font-family:'Caveat', cursive;
+    font-size:28px;
+    color:var(--chalk-orange);
+    margin:26px 4px 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-title .rule{
+    flex:1;
+    height:1px;
+    background:repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0 6px, transparent 6px 12px);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
+    gap:14px;
+  }
+
+  .card{
+    background:rgba(255,255,255,0.04);
+    border:1.5px solid rgba(255,255,255,0.15);
+    border-radius:10px;
+    padding:12px 12px 10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    transition:transform 0.12s ease, border-color 0.2s ease, background 0.2s ease;
+    cursor:pointer;
+    user-select:none;
+  }
+  .card:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,0.35); }
+  .card:active{ transform:translateY(0px) scale(0.98); }
+
+  .card-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .avatar{
+    width:38px;height:38px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Caveat', cursive;
+    font-size:19px;
+    font-weight:700;
+    color:var(--board-dark);
+    flex-shrink:0;
+  }
+  .num{
+    font-size:11px;
+    color:rgba(255,255,255,0.4);
+    min-width:20px;
+  }
+  .name{
+    font-size:14px;
+    font-weight:500;
+    line-height:1.25;
+  }
+
+  .stamp{
+    align-self:flex-start;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:999px;
+    border:2px solid rgba(255,255,255,0.3);
+    color:rgba(255,255,255,0.55);
+    transform:rotate(-3deg);
+  }
+
+  .card.present{ border-color:#9EE6B8; background:rgba(158,230,184,0.08); }
+  .card.present .stamp{ border-color:#9EE6B8; color:#9EE6B8; }
+  .card.absent{ border-color:var(--chalk-pink); background:rgba(255,154,176,0.08); }
+  .card.absent .stamp{ border-color:var(--chalk-pink); color:var(--chalk-pink); }
+  .card.late{ border-color:var(--chalk-yellow); background:rgba(255,216,115,0.08); }
+  .card.late .stamp{ border-color:var(--chalk-yellow); color:var(--chalk-yellow); }
+
+  footer{
+    text-align:center;
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  button.reset{
+    background:transparent;
+    border:1.5px dashed rgba(255,255,255,0.4);
+    color:rgba(255,255,255,0.75);
+    padding:9px 18px;
+    border-radius:8px;
+    font-family:'Poppins', sans-serif;
+    font-size:13px;
+    cursor:pointer;
+  }
+  button.reset:hover{ border-color:var(--chalk-pink); color:var(--chalk-pink); }
+  button.markall{
+    background:rgba(158,230,184,0.12);
+    border:1.5px solid rgba(158,230,184,0.5);
+    color:#9EE6B8;
+    padding:9px 18px;
+    border-radius:8px;
+    font-family:'Poppins', sans-serif;
+    font-size:13px;
+    cursor:pointer;
+  }
+  button.markall:hover{ background:rgba(158,230,184,0.22); }
+
+  .foot-note{
+    text-align:center;
+    font-size:11px;
+    color:rgba(255,255,255,0.35);
+    margin-top:18px;
+  }
+
+  @media (max-width:520px){
+    h1{font-size:42px;}
+    .frame{padding:20px 14px 30px; border-width:10px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <header>
+    <div class="eyebrow">Morning Star Regional Seminary · Barrackpore</div>
+    <h1>Roll Call</h1>
+    <div class="subtitle">First Year Theology, Batch of 33</div>
+    <div class="session-row">
+      <span><label for="sessionDate">Date</label><input type="date" id="sessionDate"></span>
+      <span><label for="sessionNote">Session</label><input type="text" id="sessionNote" placeholder="e.g. Morning Class, Trends in Trinitarian Theology"></span>
+    </div>
+  </header>
+
+  <div class="bell-strip" id="tallyStrip">
+    <div class="tally present"><span class="dot"></span><span id="countPresent">0</span> Present</div>
+    <div class="tally absent"><span class="dot"></span><span id="countAbsent">0</span> Absent</div>
+    <div class="tally late"><span class="dot"></span><span id="countLate">0</span> Late</div>
+    <div class="tally unmarked"><span class="dot"></span><span id="countUnmarked">33</span> Not marked</div>
+  </div>
+  <div class="instructions">Tap a name to cycle through Present, Absent, and Late. Tap once more to clear the mark.</div>
+
+  <div id="listContainer"></div>
+
+  <footer>
+    <button class="markall" id="markAllPresent">Mark all Present</button>
+    <button class="reset" id="resetAll">Clear all marks</button>
+  </footer>
+  <div class="foot-note">Marks are held only in this open window. Note them down or take a screenshot before closing.</div>
+</div>
+
+<script>
+  const students = [
+    "Abraham Hansdak","Anish Kujur","Ashish Minj","Baidyanath Kisku","Brando Lyngdoh",
+    "Charanga Anishil","Cosmas Tirkey","David Pania","Jesto Thomas Kumbara","Joe Jose",
+    "Hasborn Lyngdoh","Lawrence Rikhi","Nirmal Hembrom","Pratib Nag","Praint Dungdung",
+    "Prince Benjamin","Rohit Sharma","Romerius Suchiang","Roston Lakra","Runkiy Lanrin",
+    "Sengrak D. Sangma","Shimrengam","Tany N.B","Vincyel Vinsas L","Astin Allen",
+    "David Diengdoh","Francis Hasda","James Chirapanhriil","Joseph Nelson","Saroj Hansda"
+  ];
+  const dayScholars = [
+    "Sr. Jencya (Day Scholar)","Sr. Sarojini (Day Scholar)","Sr. Victoria Lakra"
+  ];
+
+  const avatarPalette = ["#FFD873","#FF9AB0","#8FD0E8","#FFB05C","#C9B6FF","#9EE6B8"];
+
+  const states = ["unmarked","present","absent","late"];
+  const stampLabel = { unmarked:"Not marked", present:"Present", absent:"Absent", late:"Late" };
+  const record = {}; // name -> state
+
+  function initials(name){
+    const clean = name.replace(/[().]/g,"").split(" ").filter(Boolean);
+    const first = clean[0] ? clean[0][0] : "";
+    const last = clean.length > 1 ? clean[clean.length-1][0] : "";
+    return (first+last).toUpperCase();
+  }
+
+  function colorFor(name){
+    let sum = 0;
+    for (let i=0;i<name.length;i++) sum += name.charCodeAt(i);
+    return avatarPalette[sum % avatarPalette.length];
+  }
+
+  function buildGroup(title, names, startNum){
+    const wrap = document.createElement('div');
+    const heading = document.createElement('div');
+    heading.className = 'group-title';
+    heading.innerHTML = `<span>${title}</span><span class="rule"></span>`;
+    wrap.appendChild(heading);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+    names.forEach((name, i) => {
+      record[name] = "unmarked";
+      const card = document.createElement('div');
+      card.className = 'card unmarked';
+      card.dataset.name = name;
+      card.innerHTML = `
+        <div class="card-top">
+          <span class="num">${startNum + i}</span>
+          <div class="avatar" style="background:${colorFor(name)}">${initials(name)}</div>
+          <div class="name">${name}</div>
+        </div>
+        <div class="stamp">Not marked</div>
+      `;
+      card.addEventListener('click', () => cycleState(name));
+      grid.appendChild(card);
+    });
+
+    wrap.appendChild(grid);
+    return wrap;
+  }
+
+  function cycleState(name){
+    const current = record[name];
+    const idx = states.indexOf(current);
+    const next = states[(idx + 1) % states.length];
+    record[name] = next;
+    render();
+  }
+
+  function markAllPresent(){
+    Object.keys(record).forEach(name => record[name] = "present");
+    render();
+  }
+
+  function clearAll(){
+    Object.keys(record).forEach(name => record[name] = "unmarked");
+    render();
+  }
+
+  function render(){
+    document.querySelectorAll('.card').forEach(card => {
+      const name = card.dataset.name;
+      const state = record[name];
+      card.className = 'card ' + state;
+      card.querySelector('.stamp').textContent = stampLabel[state];
+    });
+    const counts = { present:0, absent:0, late:0, unmarked:0 };
+    Object.values(record).forEach(s => counts[s]++);
+    document.getElementById('countPresent').textContent = counts.present;
+    document.getElementById('countAbsent').textContent = counts.absent;
+    document.getElementById('countLate').textContent = counts.late;
+    document.getElementById('countUnmarked').textContent = counts.unmarked;
+  }
+
+  const listContainer = document.getElementById('listContainer');
+  listContainer.appendChild(buildGroup("Regular Students", students, 1));
+  listContainer.appendChild(buildGroup("Day Scholars", dayScholars, 31));
+
+  document.getElementById('markAllPresent').addEventListener('click', markAllPresent);
+  document.getElementById('resetAll').addEventListener('click', clearAll);
+
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('sessionDate').value = today;
+
+  render();
+</script>
+</body>
+</html>

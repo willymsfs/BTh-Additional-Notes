@@ -1,0 +1,723 @@
+<title>Issues in Ecclesiology — MTh Dossier</title>
+<style>
+  :root {
+    --ground: #E8E2D2;
+    --surface: #F6F2E7;
+    --surface-raised: #FDFBF4;
+    --ink: #211C16;
+    --ink-soft: #4A4234;
+    --ink-faint: #7A705C;
+    --rule: #CFC5AC;
+    --gold: #9C7A2E;
+    --gold-soft: #B7913F;
+    --blue: #24406B;
+    --blue-soft: #E4E9F1;
+    --red: #7A2A2E;
+    --red-soft: #F1E3E1;
+    --shadow: 0 1px 2px rgba(33,28,22,0.06), 0 8px 24px -12px rgba(33,28,22,0.18);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #15120D;
+      --surface: #1D1811;
+      --surface-raised: #241E15;
+      --ink: #EDE4D0;
+      --ink-soft: #C9BEA6;
+      --ink-faint: #948A72;
+      --rule: #3A3325;
+      --gold: #C9A24B;
+      --gold-soft: #D9BA6C;
+      --blue: #7C96C4;
+      --blue-soft: #212A3B;
+      --red: #C17872;
+      --red-soft: #341F1E;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #15120D;
+    --surface: #1D1811;
+    --surface-raised: #241E15;
+    --ink: #EDE4D0;
+    --ink-soft: #C9BEA6;
+    --ink-faint: #948A72;
+    --rule: #3A3325;
+    --gold: #C9A24B;
+    --gold-soft: #D9BA6C;
+    --blue: #7C96C4;
+    --blue-soft: #212A3B;
+    --red: #C17872;
+    --red-soft: #341F1E;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Optima, Candara, 'Noto Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--blue); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ---------- Header ---------- */
+  header.masthead {
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 2.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+  .eyebrow {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 1rem;
+  }
+  h1.title {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .subtitle {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    max-width: 42ch;
+  }
+  .meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  .meta-line strong { color: var(--ink-soft); font-weight: 600; }
+
+  .preface {
+    max-width: 68ch;
+    margin-top: 2rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+  .preface p { margin: 0 0 0.9rem; }
+  .preface p:last-child { margin-bottom: 0; }
+
+  /* ---------- Layout: nav + content ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.1rem 1.1rem 1.3rem;
+    box-shadow: var(--shadow);
+  }
+  @media (max-width: 860px) { nav.toc { position: static; } }
+  nav.toc h2 {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 0.8rem;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+  }
+  nav.toc .toc-part {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 1rem 0 0.4rem;
+  }
+  nav.toc .toc-part:first-child { margin-top: 0; }
+  nav.toc li { margin: 0.15rem 0; }
+  nav.toc a {
+    display: block;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 0.28rem 0.3rem;
+    border-radius: 3px;
+    line-height: 1.35;
+  }
+  nav.toc a:hover { color: var(--ink); background: var(--surface-raised); }
+  nav.toc a .n {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    color: var(--gold);
+    margin-right: 0.4em;
+    font-size: 0.82em;
+  }
+
+  main { min-width: 0; }
+
+  section.part {
+    margin-bottom: 3.5rem;
+  }
+  .part-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin: 0 0 0.3rem;
+  }
+  .part-numeral {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+  }
+  .part-heading h2 {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    margin: 0;
+    color: var(--ink);
+  }
+  .part-dek {
+    color: var(--ink-faint);
+    font-size: 0.92rem;
+    margin: 0 0 1.6rem;
+    max-width: 60ch;
+  }
+
+  article.debate {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: clamp(1.4rem, 3vw, 2.1rem);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 1.5rem;
+  }
+  .debate-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .debate-num {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    color: var(--gold);
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .debate-head h3 {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.15rem, 2.2vw, 1.42rem);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .framing {
+    color: var(--ink-soft);
+    font-size: 0.97rem;
+    max-width: 74ch;
+    margin: 0 0 1.3rem;
+  }
+
+  .faultlines {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+  @media (max-width: 640px) { .faultlines { grid-template-columns: 1fr; } }
+
+  .fl {
+    border-radius: 4px;
+    padding: 1rem 1.1rem 1.1rem;
+    border-left: 3px solid transparent;
+  }
+  .fl-a { background: var(--blue-soft); border-left-color: var(--blue); }
+  .fl-b { background: var(--red-soft); border-left-color: var(--red); }
+  .fl-label {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+    display: block;
+  }
+  .fl-a .fl-label { color: var(--blue); }
+  .fl-b .fl-label { color: var(--red); }
+  .fl p { margin: 0; font-size: 0.94rem; color: var(--ink); }
+  .fl strong { font-weight: 700; }
+
+  .angle {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--rule);
+    padding-top: 0.8rem;
+    margin: 0 0 0.7rem;
+  }
+  .angle .angle-label {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .sources {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+  .sources .src-label {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+    margin-right: 0.5em;
+  }
+  .sources em { font-style: italic; color: var(--ink-soft); }
+
+  /* ---------- Colophon / footer ---------- */
+  footer.colophon {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+  footer.colophon h2 {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 0.8rem;
+  }
+  .shelf {
+    columns: 3 220px;
+    column-gap: 1.5rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+  @media (max-width: 640px) { .shelf { columns: 1; } }
+  .shelf div { break-inside: avoid; margin-bottom: 0.5rem; color: var(--ink-soft); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    article.debate { transition: box-shadow 0.15s ease; }
+  }
+
+  /* ---------- Citations table ---------- */
+  section.reference {
+    margin-bottom: 3.5rem;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    margin-bottom: 0.7rem;
+  }
+  table.citation-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+  }
+  table.citation-table th,
+  table.citation-table td {
+    text-align: left;
+    padding: 0.7rem 1rem;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+  }
+  table.citation-table thead th {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    background: var(--surface-raised);
+    color: var(--ink-faint);
+  }
+  table.citation-table thead th.th-a { color: var(--blue); }
+  table.citation-table thead th.th-b { color: var(--red); }
+  table.citation-table tbody tr:last-child td { border-bottom: none; }
+  table.citation-table td.num {
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    color: var(--gold);
+    width: 2.4rem;
+  }
+  table.citation-table td.debate-name {
+    font-weight: 600;
+    width: 15ch;
+    color: var(--ink);
+  }
+  table.citation-table td.pos { width: 30ch; }
+  table.citation-table td.pos-a { border-left: 3px solid var(--blue); }
+  table.citation-table td.pos-b { border-left: 3px solid var(--red); }
+  table.citation-table .pub { display: block; margin-bottom: 0.3rem; color: var(--ink); }
+  table.citation-table .cite {
+    display: block;
+    font-family: var(--font-mono, 'SF Mono', SFMono-Regular, Consolas, monospace);
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+  }
+  .table-note {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    max-width: 68ch;
+    margin: 0;
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">MTh Seminar Dossier · Ecclesiology</p>
+    <h1 class="title">Issues in Ecclesiology</h1>
+    <p class="subtitle">Nine contested questions in the theology of the Church, mapped from primary and secondary sources for graduate-level study.</p>
+    <div class="meta-line">
+      <span><strong>Notebook:</strong> Foundations and Evolution of Ecclesiology and Church History</span>
+      <span><strong>Sources queried:</strong> 27 monographs &amp; the BTh Ecclesiology syllabus</span>
+      <span><strong>Compiled:</strong> 9 August 2026</span>
+    </div>
+    <div class="preface">
+      <p>Each entry below names two (or more) real, citable positions in tension — not a summary of "views on the Church" but a fault line an MTh thesis or seminar paper could actually stand on. The BTh syllabus of Morning Star Regional Seminary, Barrackpore, supplies the fourteen-unit foundation (biblical origins through <em>Lumen Gentium</em> to Francis); everything here goes past that foundation into the live scholarly and magisterial disputes the syllabus gestures at but does not adjudicate.</p>
+      <p>Each debate closes with a suggested angle for original MTh-level work, and the specific volumes in the notebook where the position is documented.</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <ol>
+        <li class="toc-part">I · Communion &amp; Primacy</li>
+        <li><a href="#d1"><span class="n">01</span>Universal vs. Local Church</a></li>
+        <li><a href="#d2"><span class="n">02</span>Petrine Primacy</a></li>
+        <li><a href="#d3"><span class="n">03</span>Episcopal Conferences</a></li>
+        <li><a href="#d4"><span class="n">04</span>Filioque &amp; Pentarchy</a></li>
+        <li class="toc-part">II · Authority &amp; Boundaries</li>
+        <li><a href="#d5"><span class="n">05</span>Infallibility: Küng vs. Rahner</a></li>
+        <li><a href="#d6"><span class="n">06</span>"Subsistit In"</a></li>
+        <li><a href="#d7"><span class="n">07</span>Synodality vs. Hierarchy</a></li>
+        <li class="toc-part">III · Church &amp; the Marginalized</li>
+        <li><a href="#d8"><span class="n">08</span>Women's Ordination</a></li>
+        <li><a href="#d9"><span class="n">09</span>Liberation Ecclesiology</a></li>
+        <li class="toc-part">Reference</li>
+        <li><a href="#citations"><span class="n">§</span>Publications &amp; Paragraphs</a></li>
+      </ol>
+    </nav>
+
+    <main>
+
+      <section class="part" id="part-1">
+        <div class="part-heading"><span class="part-numeral">I.</span><h2>Communion, Primacy, and Structure</h2></div>
+        <p class="part-dek">How the one Church relates to its many local churches, and who exercises authority over the whole — from Rome, from the ancient patriarchates, and from the bishops gathered regionally.</p>
+
+        <article class="debate" id="d1">
+          <div class="debate-head"><span class="debate-num">01</span><h3>The Universal Church and the Local Church: Which Is Prior?</h3></div>
+          <p class="framing">Every account of the Church's basic shape must decide whether the one universal Church precedes and grounds the many local churches, or whether the two co-arise together. The question resurfaced sharply in the Ratzinger–Kasper exchange of the early 2000s and remains active in Catholic–Orthodox eucharistic ecclesiology.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Universal Priority</span>
+              <p><strong>Joseph Ratzinger</strong>, the CDF's 1992 letter <em>Communionis Notio</em>, <strong>Guy Mansini</strong>, and <strong>Avery Dulles</strong> hold that the Church pre-exists in the mind of God and was given at Pentecost as one reality that then generates the local churches; the Petrine office belongs to the interior constitution of every local church, not merely to relations between them.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Simultaneity</span>
+              <p><strong>Walter Kasper</strong> and <strong>Richard Gaillardetz</strong>, joined from the Orthodox side by <strong>John Zizioulas</strong> and <strong>Nicholas Afanasiev</strong>, argue the universal and local are equiprimordial, realized together at Pentecost in the concrete assembly at Jerusalem. Afanasiev goes furthest: "where the Eucharist is, there is the Church," in full, with no room for a jurisdictional universal above it.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>Trace the argument from <em>Communionis Notio</em> (1992) through Kasper's 2001 reply into its reception in current Catholic–Orthodox dialogue, and test whether "equiprimordiality" is a genuine third option or a restatement of one side in softer language.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>T&amp;T Clark Handbook of Ecclesiology</em>; <em>Ecclesiology</em> (Mansini); <em>Ecclesiology for a Global Church</em> (Gaillardetz); <em>Ecclesiology at the Beginning of the Third Millennium</em>.</p>
+        </article>
+
+        <article class="debate" id="d2">
+          <div class="debate-head"><span class="debate-num">02</span><h3>Petrine Primacy: Juridical Supremacy or Eucharistic Presidency?</h3></div>
+          <p class="framing"><em>Pastor Aeternus</em> (1870) defined papal jurisdiction as full, supreme, ordinary, and immediate. Whether that definition can be reconciled with patristic conciliarism or modern ecumenism is unfinished business, and John Paul II said as much in 1995.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Juridical Primacy</span>
+              <p><strong>Vatican I</strong> and <strong>Guy Mansini</strong> tie immediate papal jurisdiction to the ontological priority of the universal Church (Debate 01). <strong>Miroslav Volf</strong> argues, critically, that Ratzinger's trinitarian starting point structurally requires a monarchical papacy.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Synodal Primacy</span>
+              <p><strong>Paul McPartlan</strong> and <strong>Henri de Lubac</strong> anchor the papacy in the local church of Rome via Cyprian's "the episcopate is one." <strong>John Zizioulas</strong> holds primacy necessary at every level but only exercisable synodically; the <strong>Moscow Patriarchate's</strong> 2012 paper accepts no more than a non-jurisdictional "primacy of honour."</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span><em>Ut Unum Sint's</em> invitation to "find a new way of exercising primacy... open to a new situation" is still unanswered magisterially — a live constructive-ecumenism topic rather than a historical one.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>Sacrament of Salvation</em> (McPartlan); <em>Dumitru Staniloae's Trinitarian Ecclesiology</em> (Coman); <em>Ecclesiology</em> (Mansini).</p>
+        </article>
+
+        <article class="debate" id="d3">
+          <div class="debate-head"><span class="debate-num">03</span><h3>Episcopal Conferences: Doctrinal Authority or Consultative Body?</h3></div>
+          <p class="framing">Vatican II created episcopal conferences without settling their doctrinal status — a gap Francis has reopened and that touches every question of inculturation and local pastoral practice.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Rome-Dependent</span>
+              <p><strong>John Paul II's</strong> <em>Apostolos Suos</em> (1998) restricts binding conference statements to unanimous votes or Roman <em>recognitio</em>. <strong>Ratzinger</strong> called conferences theologically baseless, producing "flattened," lowest-common-denominator documents; <strong>de Lubac</strong> distinguishes a mere "collective act" from a true "collegial act."</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Sound Decentralization</span>
+              <p><strong>Francis's</strong> <em>Evangelii Gaudium</em> laments that conferences' "genuine doctrinal authority" was never elaborated and calls for decentralization. <strong>Gaillardetz</strong> calls <em>Apostolos Suos</em> "theologically inadequate"; <strong>Tillard</strong> grounds conferences in eucharistic <em>collegialis affectus</em>. <strong>Mariusz Biliniewicz</strong> warns this risks real doctrinal pluralism — divergent conference rulings on, e.g., communion for the divorced and remarried.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>A case study — the German Synodal Way, or the Amazon Synod's regional proposals — tests whether "sound decentralization" is operative doctrine or aspiration.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>Ecclesiology for a Global Church</em> (Gaillardetz); T&amp;T Clark Handbook of Ecclesiology.</p>
+        </article>
+
+        <article class="debate" id="d4">
+          <div class="debate-head"><span class="debate-num">04</span><h3>East and West: Filioque, Pentarchy, and the Limits of Analogy</h3></div>
+          <p class="framing">Behind the primacy debate lies a deeper trinitarian disagreement about how "the one" and "the many" relate — expressed liturgically in the <em>filioque</em> clause and structurally in the ancient pentarchy of patriarchates.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Orthodox / Pentarchic</span>
+              <p><strong>Dumitru Stăniloae</strong> argues the <em>filioque</em> splits Christology from pneumatology, producing an "essence-centred," over-institutionalized Western ecclesiology that hinders "personal freedom and diversity"; Lossky and Romanides trace most other Western deviations to this root. The pentarchy of five sees, not a Roman monarchy, is read as the Church's proper conciliar structure.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Roman / Universal</span>
+              <p><em>Pastor Aeternus</em> and <strong>Guy Mansini</strong> defend an ordinary, immediate universal jurisdiction that does not require synodal consensus. <strong>Zizioulas</strong>, writing from within Orthodoxy but in ecumenical dialogue, allows a qualified universal primacy bound to synodality — a mediating position both sides contest.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>The 2007 Ravenna Document and the Moscow Patriarchate's dissenting response are a compact, self-contained primary-source pair for a chapter on whether "sobornic liberty" and Roman primacy can in fact be reconciled.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>Dumitru Staniloae's Trinitarian Ecclesiology</em> (Coman); <em>The Ecclesiology of St. Nicephorus I</em> (O'Connell); <em>The Ecclesiology of St. Basil the Great</em> (Druzhinina).</p>
+        </article>
+      </section>
+
+      <section class="part" id="part-2">
+        <div class="part-heading"><span class="part-numeral">II.</span><h2>Authority and Boundaries</h2></div>
+        <p class="part-dek">What the Magisterium can bind, who else counts as Church, and how far "listening" can go before it dissolves the teaching office it claims to renew.</p>
+
+        <article class="debate" id="d5">
+          <div class="debate-head"><span class="debate-num">05</span><h3>Infallibility: Küng's Challenge and the Rahner/von Balthasar Response</h3></div>
+          <p class="framing">Hans Küng's <em>Infallible? An Inquiry</em> (1971) used <em>Humanae Vitae</em> to argue that even solemnly proposed teaching can err — a direct challenge to Vatican I that provoked two very different rebuttals from within the Catholic academy.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Küng: Indefectibility, Not Infallibility</span>
+              <p>Dogmatic language is historically conditioned and can be wrong; church authority rests not on an infallible organ but on the Spirit keeping the pilgrim community indefectible in truth despite individual, even magisterial, error.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Rahner &amp; von Balthasar: Defended, Reframed</span>
+              <p><strong>Rahner</strong> rejects Küng's use of <em>Humanae Vitae</em> as a test case — he denies it was ever proposed as infallible — while defending infallibility's legitimacy as a secondary, conflict-resolving mechanism rather than the primary act of faith. <strong>Von Balthasar's</strong> <em>Der antirömische Affekt</em> (1974) is a sharper polemical defense, framing the era's attacks on the papacy as a "peasant rebellion" against hierarchy.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>Because Rahner and Küng agree that infallible statements are still historically conditioned in their <em>expression</em>, the live question is narrower than the public dispute suggested — precisely where Rahner draws a line Küng erases.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>A Critical Study of Hans Küng's Ecclesiology</em> (Simuț); <em>The Ecclesiology of Karl Rahner</em> (Lennan); <em>An Introduction to Ecclesiology</em> (Kärkkäinen).</p>
+        </article>
+
+        <article class="debate" id="d6">
+          <div class="debate-head"><span class="debate-num">06</span><h3>"Subsistit In": Who Else Counts as Church?</h3></div>
+          <p class="framing"><em>Lumen Gentium</em> 8 replaced "is" (<em>est</em>) with "subsists in" (<em>subsistit in</em>) to describe the relation of Christ's Church to the Catholic Church — a single verb bearing enormous ecumenical weight ever since.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Exclusive Reading</span>
+              <p><strong>Sebastian Tromp</strong>, who drafted the term, and <strong>Ratzinger</strong>/the CDF's <em>Dominus Iesus</em> (2000) read <em>subsistit</em> as technical and exclusive: the Church of Christ as a "concrete agent" exists only in the Catholic Church; other bodies are "ecclesial communities," not Churches, lacking valid episcopate and Eucharist.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Non-Exclusive Reading</span>
+              <p><strong>Edward Schillebeeckx</strong> reads <em>subsistit</em> as meaning "not exactly identical to"; <strong>Francis Sullivan</strong> argues for "non-exclusive identity," allowing that other communities can in some respects realize communion with Christ more fully than some Catholics do; <strong>Kasper</strong> reads the term as an admission of the Catholic Church's own imperfection and sin.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>Sullivan's 2006–08 <em>Theological Studies</em> exchange with Karl Becker is a self-contained, citation-rich dispute — ideal for a close-reading seminar paper rather than a broad survey.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>Ecclesiology</em> (Mansini); T&amp;T Clark Handbook of Ecclesiology; <em>A Church with Open Doors</em> (Gaillardetz).</p>
+        </article>
+
+        <article class="debate" id="d7">
+          <div class="debate-head"><span class="debate-num">07</span><h3>Synodality: Listening Church or Doctrinal Pluralism?</h3></div>
+          <p class="framing">Francis's synodal reforms revive the collegiality question (Debate 03) at the level of the whole Church's process, not only its regional structures.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">The Listening Church</span>
+              <p><strong>Francis's</strong> vision, grounded in a baptismal <em>sensus fidelium</em>, and <strong>Gaillardetz's</strong> "pastoral magisterium" of doctrinal humility, treat controverted questions as properly open to ongoing discernment rather than pre-emptively closed.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">The Bounded Magisterium</span>
+              <p><strong>Biliniewicz's</strong> critique of a "hearsay magisterium" and <strong>Cardinal Müller's</strong> warning that a pastorally-positivist magisterium leaves the Church "stranded on a sandbank"; <strong>von Balthasar</strong> had already warned that decentralization could produce a bureaucratic "photocopying church."</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>The Synod on Synodality's own 2021–24 documents are recent enough that a chapter here is original engagement with primary sources, not literature review.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>Ecclesiology for a Global Church</em> (Gaillardetz); <em>The Turn to the Church in the Twentieth and Twenty-First Centuries</em> (Mulder).</p>
+        </article>
+      </section>
+
+      <section class="part" id="part-3">
+        <div class="part-heading"><span class="part-numeral">III.</span><h2>Church, Body, and the Marginalized</h2></div>
+        <p class="part-dek">Two places where ecclesiology meets bodies directly: whose body can stand at the altar <em>in persona Christi</em>, and whose body — the materially poor — the Church claims as its own flesh.</p>
+
+        <article class="debate" id="d8">
+          <div class="debate-head"><span class="debate-num">08</span><h3>Women's Ordination and Sacramental Representation</h3></div>
+          <p class="framing"><em>Inter Insigniores</em> (1976) and <em>Ordinatio Sacerdotalis</em> (1994) ground an all-male priesthood in the claim that the priest, acting <em>in persona Christi</em>, needs a "natural resemblance" to the male Christ.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Ontological Complementarity</span>
+              <p>The magisterial line — <strong>Paul VI</strong>, <strong>John Paul II's</strong> <em>Mulieris Dignitatem</em>, <strong>Ratzinger's</strong> 2004 CDF letter — treats sexual difference as ontological and complementary; only a male can iconically represent Christ the Bridegroom at the altar.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">Baptismal Reconstruction</span>
+              <p><strong>Elizabeth Johnson</strong> uses Gregory of Nazianzus's axiom — "what is not assumed is not saved" — to argue that if maleness is essential to representing Christ, women are excluded from redemption itself. <strong>Mary Ann Hinsdale</strong> calls complementarity "the issue under the issues"; <strong>Rosemary Radford Ruether's</strong> separatist "women-church" and <strong>Teresa Berger</strong> and <strong>Sarah Coakley's</strong> readings of gender fluidity already present in the tradition (a nursing, labouring eucharistic body) offer different routes past the same wall.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>Johnson's patristic-axiom argument is a compact, well-defined thesis a dissertation could test against the fuller range of patristic uses of the axiom, beyond its narrow citation in the ordination debate.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>A Church with Open Doors</em> (Gaillardetz); T&amp;T Clark Handbook of Ecclesiology.</p>
+        </article>
+
+        <article class="debate" id="d9">
+          <div class="debate-head"><span class="debate-num">09</span><h3>Liberation Ecclesiology: Church of the Poor or Politicized Church?</h3></div>
+          <p class="framing">Medellín (1968) and Puebla (1979) put "the poor" at the centre of Latin American ecclesiology, provoking a Roman response that still shapes how "base" and "hierarchy" are understood to relate.</p>
+          <div class="faultlines">
+            <div class="fl fl-a">
+              <span class="fl-label">Church of the Poor</span>
+              <p><strong>Gutiérrez</strong> redefines theology as critical reflection on praxis with the poor as its "interlocutor"; <strong>Boff's</strong> "ecclesiogenesis" reads Base Ecclesial Communities as a new, lay-and-word-centred way of being Church, not a mere sociological response to clergy shortage. <strong>Sobrino's</strong> <em>extra pauperes nulla salus</em> names the poor as the Church's sacrament of Christ; <strong>Romero</strong> embodied the same claim pastorally.</p>
+            </div>
+            <div class="fl fl-b">
+              <span class="fl-label">The Institutional Response</span>
+              <p><strong>Ratzinger</strong> and the CDF's <em>Libertatis Nuntius</em> criticize the Marxist social analysis behind this move as an "immanentist" politicization that strips the People of God of its sacramental character, insisting the primary liberation is from sin — and warning that bypassing hierarchical oversight for autonomous base communities risks new, unchecked abuses of power.</p>
+            </div>
+          </div>
+          <p class="angle"><span class="angle-label">MTh Angle</span>Boff's own claim that base communities are "not distinct from the institutional Church" sits in real tension with Ratzinger's fear of an alternative "Church from below." Locating exactly where that tension lives would make a tight, defensible thesis chapter.</p>
+          <p class="sources"><span class="src-label">In this notebook</span><em>A Liberation Ecclesiology</em> (Corkery); <em>An Introduction to Ecclesiology</em> (Kärkkäinen); T&amp;T Clark Handbook of Ecclesiology.</p>
+        </article>
+      </section>
+
+      <section class="reference" id="citations">
+        <div class="part-heading"><span class="part-numeral">§</span><h2>Publications &amp; Conciliar Paragraphs</h2></div>
+        <p class="part-dek">The single most load-bearing text for each position, with the exact conciliar or magisterial paragraph it stands on — for citing in a proposal or footnote rather than paraphrasing from memory.</p>
+        <div class="table-wrap">
+          <table class="citation-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Debate</th>
+                <th class="th-a">Position A</th>
+                <th class="th-b">Position B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="num">01</td>
+                <td class="debate-name">Universal vs. Local Church</td>
+                <td class="pos pos-a"><span class="pub">CDF, <em>Communionis Notio</em> (1992)</span><span class="cite">§§ 9, 13</span></td>
+                <td class="pos pos-b"><span class="pub">W. Kasper, "On the Church: A Friendly Reply to Cardinal Ratzinger," <em>America</em> 184/14 (2001)</span><span class="cite">Lumen Gentium §§ 23, 26</span></td>
+              </tr>
+              <tr>
+                <td class="num">02</td>
+                <td class="debate-name">Petrine Primacy</td>
+                <td class="pos pos-a"><span class="pub">Vatican I, <em>Pastor Aeternus</em> (1870)</span><span class="cite">ch. 3 (jurisdiction); ch. 4 (infallibility)</span></td>
+                <td class="pos pos-b"><span class="pub">J. Zizioulas, "Primacy in the Church: An Orthodox Approach" (1996; publ. 2010)</span><span class="cite">citing Ut Unum Sint (1995) § 95</span></td>
+              </tr>
+              <tr>
+                <td class="num">03</td>
+                <td class="debate-name">Episcopal Conferences</td>
+                <td class="pos pos-a"><span class="pub">John Paul II, <em>Apostolos Suos</em> (1998)</span><span class="cite">art. 22</span></td>
+                <td class="pos pos-b"><span class="pub">Francis, <em>Evangelii Gaudium</em> (2013)</span><span class="cite">§ 32</span></td>
+              </tr>
+              <tr>
+                <td class="num">04</td>
+                <td class="debate-name">Filioque &amp; Pentarchy</td>
+                <td class="pos pos-a"><span class="pub">D. Stăniloae, "The Procession of the Holy Spirit from the Father..." (Klingenthal, 1979; publ. in <em>Spirit of God, Spirit of Christ</em>, 1981)</span><span class="cite">citing Apostolic Canon 34</span></td>
+                <td class="pos pos-b"><span class="pub">T. Aquinas, <em>Summa Theologiae</em> I, q. 36; Vatican I, <em>Pastor Aeternus</em></span><span class="cite">ch. 3</span></td>
+              </tr>
+              <tr>
+                <td class="num">05</td>
+                <td class="debate-name">Infallibility</td>
+                <td class="pos pos-a"><span class="pub">H. Küng, <em>Infallible? An Inquiry</em> (1971)</span><span class="cite">cf. Lumen Gentium § 12 (sensus fidei)</span></td>
+                <td class="pos pos-b"><span class="pub">K. Rahner, "A Critique of Hans Küng: Concerning the Infallibility of Theological Propositions" (1971); H.U. von Balthasar, <em>The Office of Peter and the Structure of the Church</em> (1974)</span><span class="cite">Pastor Aeternus ch. 4</span></td>
+              </tr>
+              <tr>
+                <td class="num">06</td>
+                <td class="debate-name">"Subsistit In"</td>
+                <td class="pos pos-a"><span class="pub">CDF, <em>Dominus Iesus</em> (2000)</span><span class="cite">§ 16; Lumen Gentium § 8</span></td>
+                <td class="pos pos-b"><span class="pub">E. Schillebeeckx, <em>Church: The Human Story of God</em> (1990); F. Sullivan, "A Response to Karl Becker, S.J., on the Meaning of Subsistit In," <em>Theological Studies</em> 67 (2006)</span><span class="cite">Lumen Gentium § 8 (read analogically)</span></td>
+              </tr>
+              <tr>
+                <td class="num">07</td>
+                <td class="debate-name">Synodality</td>
+                <td class="pos pos-a"><span class="pub">Francis, address on the 50th anniversary of the Synod of Bishops (2015)</span><span class="cite">Lumen Gentium §§ 9, 12</span></td>
+                <td class="pos pos-b"><span class="pub">M. Biliniewicz, "'Pastoral Magisterium'?: The Teaching Office of the Church in the Pontificate of Pope Francis" (2019/2020)</span><span class="cite">Lumen Gentium ch. 3</span></td>
+              </tr>
+              <tr>
+                <td class="num">08</td>
+                <td class="debate-name">Women's Ordination</td>
+                <td class="pos pos-a"><span class="pub">CDF, <em>Inter Insigniores</em> (1976); John Paul II, <em>Ordinatio Sacerdotalis</em> (1994)</span><span class="cite">Ord. Sac. § 4; Lumen Gentium § 28</span></td>
+                <td class="pos pos-b"><span class="pub">E. A. Johnson, <em>She Who Is</em> (1992); M. A. Hinsdale, "A Feminist Reflection on Postconciliar Catholic Ecclesiology" (2015)</span><span class="cite">Lumen Gentium § 10</span></td>
+              </tr>
+              <tr>
+                <td class="num">09</td>
+                <td class="debate-name">Liberation Ecclesiology</td>
+                <td class="pos pos-a"><span class="pub">L. Boff, <em>Ecclesiogenesis: The Base Communities Reinvent the Church</em> (1986); J. Sobrino, <em>The True Church and the Poor</em> (1985)</span><span class="cite">Lumen Gentium §§ 1, 9</span></td>
+                <td class="pos pos-b"><span class="pub">CDF, <em>Libertatis Nuntius</em> (1984)</span><span class="cite">Lumen Gentium § 8</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Position A/B correspond to the fault lines above (blue = the first-listed pole in each debate, red = the second). Paragraph and article numbers are as retrieved from the indexed sources in this notebook — verify each against the primary conciliar or magisterial text before citing in submitted work.</p>
+      </section>
+
+      <footer class="colophon">
+        <h2>Notebook Shelf</h2>
+        <div class="shelf">
+          <div>Avis (ed.), <em>Oxford Handbook of Ecclesiology</em></div>
+          <div>Bender &amp; Long (eds.), <em>T&amp;T Clark Handbook of Ecclesiology</em></div>
+          <div>Bockmuehl, <em>A Vision for the Church</em></div>
+          <div>Coloe, <em>Dwelling in the Household of God</em></div>
+          <div>Coman, <em>Dumitru Stăniloae's Trinitarian Ecclesiology</em></div>
+          <div>Corkery, <em>A Liberation Ecclesiology</em></div>
+          <div>Druzhinina, <em>The Ecclesiology of St. Basil the Great</em></div>
+          <div>Dulles, <em>Models of the Church</em></div>
+          <div>Faggioli, <em>True Reform: Liturgy and Ecclesiology in Sacrosanctum Concilium</em></div>
+          <div>Ferguson, <em>The Church of Christ</em></div>
+          <div>Ferreira, <em>Johannine Ecclesiology</em></div>
+          <div>Gaillardetz, <em>A Church with Open Doors</em></div>
+          <div>Gaillardetz, <em>Ecclesiology for a Global Church</em></div>
+          <div>Kärkkäinen, <em>An Introduction to Ecclesiology</em></div>
+          <div>Lennan, <em>The Ecclesiology of Karl Rahner</em></div>
+          <div>Mansini, <em>Ecclesiology</em></div>
+          <div>McPartlan, <em>Sacrament of Salvation</em></div>
+          <div>Mulder, <em>The Turn to the Church in the 20th &amp; 21st Centuries</em></div>
+          <div>O'Connell, <em>The Ecclesiology of St. Nicephorus I</em></div>
+          <div>Prusak, <em>The Church Unfinished</em></div>
+          <div>Ratzinger (Benedict XVI), <em>Church, Ecumenism and Politics</em></div>
+          <div>Simuț, <em>A Critical Study of Hans Küng's Ecclesiology</em></div>
+          <div>Wagner &amp; Naumann et al., <em>Ecclesiology at the Beginning of the Third Millennium</em></div>
+          <div>Williams, <em>Systematic Theology, Vol. 3</em></div>
+          <div>Morning Star Regional Seminary, Barrackpore — <em>Course Syllabus: Ecclesiology</em></div>
+        </div>
+        <p style="margin-top:1.2rem; max-width:70ch;">Compiled by querying the NotebookLM notebook <em>"Foundations and Evolution of Ecclesiology and Church History"</em> directly (<code>notebooklm ask</code>) rather than from general knowledge — every position above traces to a passage in one of the volumes on this shelf. Verify primary citations against the source page before quoting in submitted work.</p>
+      </footer>
+
+    </main>
+  </div>
+</div>
